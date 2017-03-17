@@ -146,6 +146,30 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\armor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\boot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\helm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\lance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\potion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\scimitar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\scythe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Images\spellbook.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

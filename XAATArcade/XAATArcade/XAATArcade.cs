@@ -28,6 +28,7 @@ namespace XAATArcade
         int x = 55;
         int y = 55;
         Point pt = new Point(0, 0);
+        Label pairsLeft = new Label();
         List<Control> frontList = new List<Control>();
         List<Panel> gridList = new List<Panel>();
         List<Button> backList = new List<Button>();
@@ -51,7 +52,6 @@ namespace XAATArcade
         // timer starts on start button
         // timer stops when pairs left reaches 0
 
-
         public XAATArcade()
         {
             InitializeComponent();
@@ -65,13 +65,11 @@ namespace XAATArcade
 
         private void CreateTitlePage()
         {
-            //PictureBox title = new PictureBox();
             title.Location = new Point(50, 10);
             title.Size = new Size(350, 100);
             title.BackColor = Color.Aqua;
             this.Controls.Add(title);
-
-            
+                        
             game1.Location = new Point(50, 120);
             game1.Size = new Size(100, 25);
             game1.Text = "Reflex";
@@ -92,16 +90,6 @@ namespace XAATArcade
 
             game1.Click += (s, z) => { Reflex(s, z); };
             game2.Click += (s, z) => { Memory(s, z); };
-
-         //   setting.Location = new Point(200, 50);
-         //   setting.Size = new Size(50, 50);
-         //   setting.BackColor = Color.Pink;
-         //   this.Controls.Add(setting);
-
-          //  settings.Location = new Point(300, 10);
-          //  settings.Size = new Size(10, 10);
-          //  settings.BackColor = Color.Green;
-          //  this.Controls.Add(settings);
         }
 
         private void RemoveTitlePage()
@@ -118,7 +106,6 @@ namespace XAATArcade
         {
             RemoveTitlePage();
             CreateStart();
-
         }
 
         private void CreateStart()
@@ -136,6 +123,11 @@ namespace XAATArcade
             memoryStart.Text = "New Game";
             memoryStart.Click += (s, z) => { CreateCard(s, z); };
             this.Controls.Add(memoryStart);
+
+            pairsLeft = new Label();
+            pairsLeft.Location = new Point(formSize.Width - 102, (formSize.Height - formSize.Height) + 1);
+            pairsLeft.Size = new Size(50,50);
+            this.Controls.Add(pairsLeft);
         }
 
         private void ClearMemory()
@@ -163,6 +155,7 @@ namespace XAATArcade
             ClearMemory();
             CreateStart();
 
+            pairsLeft.Text = "10";
             for (int row = 0; row <= 3; row++)
             {
                 for (int column = 0; column <= 4; column++)
@@ -201,7 +194,6 @@ namespace XAATArcade
             PictureBox card8 = new PictureBox();
             PictureBox card9 = new PictureBox();
             PictureBox card10 = new PictureBox();
-
             PictureBox card11 = new PictureBox();
             PictureBox card12 = new PictureBox();
             PictureBox card13 = new PictureBox();
@@ -313,7 +305,6 @@ namespace XAATArcade
             card20.Size = new Size(width, height);
             frontList.Add(card20);
 
-
             List<int> indexList = new List<int>();
             while (indexList.Count < 20)
             {
@@ -323,16 +314,13 @@ namespace XAATArcade
                     indexList.Add(index);
                 }
             }
-
             
             for (int i = 0; i < indexList.Count; i++)
             {
                 int randomIndex = indexList[i];
                 gridList[randomIndex].Controls.Add(frontList[i]);
-                    
             }
         }
-
 
         void CardSelect(object sender, EventArgs e)
         {
@@ -347,19 +335,20 @@ namespace XAATArcade
                     count++;
                 }
             }
-
             if (count <= 1)
             {
                 clickedBack.Visible = false;
-            }
-            if (count == 2)
-            {
-                CardCheck();
+                count++;
+                if (count == 2)
+                {
+                    CardCheck();
+                }
             }
         }
 
-        void CardCheck()
+        public async Task CardCheck()
         {
+            await Task.Delay(250);
             foreach (Button b in backList)
             {
                 if (b.Visible == false)
@@ -382,12 +371,9 @@ namespace XAATArcade
                 {
                     backList.Remove(matchBack[1]);
                     backList.Remove(matchBack[0]);
-
                     matchBack[1].Dispose();
                     matchBack[0].Dispose();
-
                     matchBack.Clear();
-
                     gridList.Remove(match[1]);
                     gridList.Remove(match[0]);
                     frontList.Remove(match[1].GetChildAtPoint(pt));
@@ -395,6 +381,7 @@ namespace XAATArcade
                     match[1].Dispose();
                     match[0].Dispose();
                     match.Clear();
+                    pairsLeft.Text = (frontList.Count / 2).ToString();
                 }
                 else
                 {
@@ -406,13 +393,9 @@ namespace XAATArcade
             }
         }
 
-
-
-
         private void Reflex(object sender, EventArgs e)
         {
             MessageBox.Show("3");
         }
-
     }
 }
