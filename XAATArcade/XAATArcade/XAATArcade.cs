@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace XAATArcade
 {
@@ -29,6 +30,7 @@ namespace XAATArcade
         int y = 55;
         Point pt = new Point(0, 0);
         Label pairsLeft = new Label();
+        Label lblTimer = new Label();
         List<Control> frontList = new List<Control>();
         List<Panel> gridList = new List<Panel>();
         List<Button> backList = new List<Button>();
@@ -37,18 +39,21 @@ namespace XAATArcade
         Random rand = new Random();
         Size formSize;
         Label matchesLeft = new Label();
+        System.Timers.Timer t = new System.Timers.Timer();
+        int h, m, s;
+
 
         // make backbutton availibale for all games
         // create battleship game
         // create timer for matching game
         // create config screen
-            // popupbox
-            // cancell doesn't do anything while in game
-            // on setup cancel goes back to main page
-            // timer off timmer on
-            // difficulty easy timer set to 5 min
-            // difficulty medium timer set to 3 min
-            // difficulty hard timer set to 1:30 min
+        // popupbox
+        // cancell doesn't do anything while in game
+        // on setup cancel goes back to main page
+        // timer off timmer on
+        // difficulty easy timer set to 5 min
+        // difficulty medium timer set to 3 min
+        // difficulty hard timer set to 1:30 min
         // timer starts on start button
         // timer stops when pairs left reaches 0
 
@@ -128,6 +133,15 @@ namespace XAATArcade
             pairsLeft.Location = new Point(formSize.Width - 102, (formSize.Height - formSize.Height) + 1);
             pairsLeft.Size = new Size(50,50);
             this.Controls.Add(pairsLeft);
+
+            lblTimer = new Label();
+            lblTimer.Location = new Point(formSize.Width - 152, (formSize.Height - formSize.Height) + 1);
+            lblTimer.Size = new Size(50, 50);
+            this.Controls.Add(lblTimer);
+
+            h = 0;
+            m = 0;
+            s = 0;
         }
 
         private void ClearMemory()
@@ -137,6 +151,7 @@ namespace XAATArcade
             backList.Clear();
             match.Clear();
             matchBack.Clear();
+            t.Dispose();
 
             for (int i = this.Controls.Count - 1; i >= 0; i--)
             {
@@ -146,6 +161,7 @@ namespace XAATArcade
 
         private void BackButton(object sender, EventArgs e)
         {
+            t.Stop();
             ClearMemory();
             CreateTitlePage();
         }
@@ -154,6 +170,12 @@ namespace XAATArcade
         {
             ClearMemory();
             CreateStart();
+
+            t = new System.Timers.Timer();
+            t.Interval = 10;
+            t.Elapsed += onTimeEvent;
+            t.Stop();
+            t.Start();
 
             pairsLeft.Text = "10";
             for (int row = 0; row <= 3; row++)
@@ -320,6 +342,31 @@ namespace XAATArcade
                 int randomIndex = indexList[i];
                 gridList[randomIndex].Controls.Add(frontList[i]);
             }
+            
+        }
+        private void onTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                s += 1;
+                if (s == 60)
+                {
+                    s = 0;
+                    m += 1;
+                }
+                if (m == 60)
+                {
+                    m = 0;
+                    h += 1;
+                }
+
+                lblTimer.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), s.ToString().PadLeft(2, '0'));
+            }));
+
+            if (m == 50)
+            {
+                t.Stop();
+            }
         }
 
         void CardSelect(object sender, EventArgs e)
@@ -382,6 +429,10 @@ namespace XAATArcade
                     match[0].Dispose();
                     match.Clear();
                     pairsLeft.Text = (frontList.Count / 2).ToString();
+                    if (gridList.Count == 0)
+                    {
+                        t.Stop();
+                    }
                 }
                 else
                 {
@@ -392,6 +443,18 @@ namespace XAATArcade
                 }
             }
         }
+
+        private void XAATArcade_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            t.Stop();
+            Application.DoEvents();
+        }
+
+        private void CreateConfig()
+        {
+            
+        }
+
 
         private void Reflex(object sender, EventArgs e)
         {
