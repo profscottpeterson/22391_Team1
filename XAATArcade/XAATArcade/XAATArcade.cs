@@ -21,6 +21,8 @@ namespace XAATArcade
         Button game3 = new Button();
         Button game4 = new Button();
         Button memoryStart = new Button();
+        Button sequenceStart = new Button();
+        Button sequenceNew = new Button();
         Button back = new Button();
         Panel grid = new Panel();
         Button backs = new Button();
@@ -30,22 +32,27 @@ namespace XAATArcade
         int y = 55;
         Point pt = new Point(0, 0);
         Label pairsLeft = new Label();
+        Label score = new Label();
         Label lblTimer = new Label();
         List<Control> frontList = new List<Control>();
         List<Panel> gridList = new List<Panel>();
         List<Button> backList = new List<Button>();
         List<Panel> match = new List<Panel>();
         List<Button> matchBack = new List<Button>();
+        List<Panel> sequenceList = new List<Panel>();
+        List<Panel> pickedList = new List<Panel>();
+        List<Panel> clickedList = new List<Panel>();
         Random rand = new Random();
         Size formSize;
         Label matchesLeft = new Label();
         System.Timers.Timer t = new System.Timers.Timer();
         int h, m, s;
+        Color randomColor;
+        bool error = false;
 
 
         // make backbutton availibale for all games
         // create battleship game
-        // create timer for matching game
         // create config screen
         // popupbox
         // cancell doesn't do anything while in game
@@ -54,8 +61,6 @@ namespace XAATArcade
         // difficulty easy timer set to 5 min
         // difficulty medium timer set to 3 min
         // difficulty hard timer set to 1:30 min
-        // timer starts on start button
-        // timer stops when pairs left reaches 0
 
         public XAATArcade()
         {
@@ -159,10 +164,23 @@ namespace XAATArcade
             }
         }
 
+        private void ClearSequence()
+        {
+            sequenceList.Clear();
+            gridList.Clear();
+            clickedList.Clear();
+
+            for (int i = this.Controls.Count - 1; i >= 0; i--)
+            {
+                this.Controls[i].Dispose();
+            }
+        }
+
         private void BackButton(object sender, EventArgs e)
         {
             t.Stop();
             ClearMemory();
+            ClearSequence();
             CreateTitlePage();
         }
         
@@ -344,6 +362,7 @@ namespace XAATArcade
             }
             
         }
+
         private void onTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
         {
             Invoke(new Action(() =>
@@ -455,10 +474,137 @@ namespace XAATArcade
             
         }
 
+        private async void StartSequence()
+        {
+            score.Text = sequenceList.Count().ToString();
+
+           // if (sequenceList.Count == 0)
+           // {
+                sequenceList.Add(gridList[rand.Next(gridList.Count)]);
+           // }
+
+            if (error == false)
+            {
+                if (sequenceList.Count > 0)
+                {
+                    foreach (Panel p in sequenceList)
+                    {
+                        await ChangeColor(p);
+                        System.Threading.Thread.Sleep(500);
+                        pickedList.Add(p);
+                    }
+                }
+              //  sequenceList.Add(gridList[rand.Next(gridList.Count)]);
+            }
+        }
+
+        private async Task ChangeColor(Panel p)
+        {
+                Color color = p.BackColor;
+                await Task.Delay(1000);
+                p.BackColor = Color.Black;
+                await Task.Delay(300);
+                p.BackColor = color;
+        }
+
+        private void SequenceStart(object sender, EventArgs e)
+        {
+            sequenceList.Clear();
+            clickedList.Clear();
+            StartSequence();
+        }
+
+        void SequenceSelect(object sender, EventArgs e)
+        {
+            Panel clickedSquare = (Panel)sender;
+
+            clickedList.Add(clickedSquare);
+
+            if (clickedList.Count == pickedList.Count)
+            {
+                CheckSequence();
+            }
+        }
+
+        void CheckSequence()
+        {
+            for (int i = 0; i < sequenceList.Count; i++)
+            {
+                if (clickedList[i].Name != pickedList[i].Name)
+                {
+                    error = true;
+                    break;
+                }
+            }
+
+            if (error == false)
+            {
+                StartSequence();
+            }
+        }
+
+        private void CreateSeqenceNew(object sender, EventArgs e)
+        {
+            ClearMemory();
+            CreateSequenceStart();
+        }
+
+        private void CreateSequenceStart()
+        {
+            back = new Button();
+            back.Location = new Point((formSize.Width - formSize.Width) + 1, (formSize.Height - formSize.Height) + 1);
+            back.Size = new Size(50, 50);
+            back.Text = "Back";
+            back.Click += (s, z) => { BackButton(s, z); };
+            this.Controls.Add(back);
+
+            sequenceStart = new Button();
+            sequenceStart.Location = new Point(formSize.Width - 151, (formSize.Height - formSize.Height) + 1);
+            sequenceStart.Size = new Size(50, 50);
+            sequenceStart.Text = "Start";
+            sequenceStart.Click += (s, z) => { SequenceStart(s, z); };
+            this.Controls.Add(sequenceStart);
+
+            sequenceNew = new Button();
+            sequenceNew.Location = new Point(formSize.Width - 51, (formSize.Height - formSize.Height) + 1);
+            sequenceNew.Size = new Size(50, 50);
+            sequenceNew.Text = "New Game";
+            sequenceNew.Click += (s, z) => { CreateSeqenceNew(s, z); };
+            this.Controls.Add(sequenceNew);
+
+            score = new Label();
+            score.Location = new Point(formSize.Width - 102, (formSize.Height - formSize.Height) + 1);
+            score.Size = new Size(50, 50);
+            score.Text = "0";
+            this.Controls.Add(score);
+
+            for (int row = 0; row <= 2; row++)
+            {
+                for (int column = 0; column <= 2; column++)
+                {
+                    randomColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+                    if (randomColor == BackColor)
+                    {
+                        randomColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
+                    }
+
+                    grid = new Panel();
+                    grid.Location = new Point(x + (column * (100 + 5)), y + (row * (100 + 5)));
+                    grid.Size = new Size(100, 100);
+                    grid.Name = row + " , " + column;
+                    grid.BackColor = randomColor;
+                    grid.Click += (s, z) => { SequenceSelect(s, z); };
+                    gridList.Add(grid);
+                    this.Controls.Add(grid);
+                }
+            }
+        }
+
 
         private void Reflex(object sender, EventArgs e)
         {
-            MessageBox.Show("3");
+            RemoveTitlePage();
+            CreateSequenceStart();
         }
     }
 }
