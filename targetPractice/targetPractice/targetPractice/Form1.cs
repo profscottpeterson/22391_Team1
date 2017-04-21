@@ -193,11 +193,18 @@ namespace targetPractice
             }
         }
 
-        private void Form1_Closing(object sender, FormClosingEventArgs e)
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             t.Stop();
             Application.DoEvents();
+            tBallGenerator.Stop();
         }
+
+        //private void Form1_Closing(object sender, FormClosingEventArgs e)
+        //{
+        //    t.Stop();
+        //    Application.DoEvents();
+        //}
 
         private void loadFont()
         {

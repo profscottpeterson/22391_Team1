@@ -33,12 +33,12 @@
             this.tBallGenerator = new System.Windows.Forms.Timer(this.components);
             this.tBallMovement = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new targetPractice.Form1.DoubleBufferedPanel();
+            this.lblScoreMissed = new System.Windows.Forms.Label();
+            this.lblScoreHit = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblTimer = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblScoreHit = new System.Windows.Forms.Label();
-            this.lblScoreMissed = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -78,10 +78,36 @@
             this.panel1.Controls.Add(this.lblTimer);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.panel1.Location = new System.Drawing.Point(2, 677);
+            this.panel1.Location = new System.Drawing.Point(2, 557);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(680, 183);
             this.panel1.TabIndex = 0;
+            // 
+            // lblScoreMissed
+            // 
+            this.lblScoreMissed.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblScoreMissed.AutoSize = true;
+            this.lblScoreMissed.BackColor = System.Drawing.Color.Transparent;
+            this.lblScoreMissed.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreMissed.ForeColor = System.Drawing.Color.White;
+            this.lblScoreMissed.Location = new System.Drawing.Point(591, 107);
+            this.lblScoreMissed.Name = "lblScoreMissed";
+            this.lblScoreMissed.Size = new System.Drawing.Size(51, 55);
+            this.lblScoreMissed.TabIndex = 8;
+            this.lblScoreMissed.Text = "0\r\n";
+            // 
+            // lblScoreHit
+            // 
+            this.lblScoreHit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblScoreHit.AutoSize = true;
+            this.lblScoreHit.BackColor = System.Drawing.Color.Transparent;
+            this.lblScoreHit.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreHit.ForeColor = System.Drawing.Color.White;
+            this.lblScoreHit.Location = new System.Drawing.Point(484, 92);
+            this.lblScoreHit.Name = "lblScoreHit";
+            this.lblScoreHit.Size = new System.Drawing.Size(51, 55);
+            this.lblScoreHit.TabIndex = 7;
+            this.lblScoreHit.Text = "0\r\n";
             // 
             // pictureBox3
             // 
@@ -135,46 +161,20 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // lblScoreHit
-            // 
-            this.lblScoreHit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblScoreHit.AutoSize = true;
-            this.lblScoreHit.BackColor = System.Drawing.Color.Transparent;
-            this.lblScoreHit.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreHit.ForeColor = System.Drawing.Color.White;
-            this.lblScoreHit.Location = new System.Drawing.Point(484, 92);
-            this.lblScoreHit.Name = "lblScoreHit";
-            this.lblScoreHit.Size = new System.Drawing.Size(51, 55);
-            this.lblScoreHit.TabIndex = 7;
-            this.lblScoreHit.Text = "0\r\n";
-            // 
-            // lblScoreMissed
-            // 
-            this.lblScoreMissed.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblScoreMissed.AutoSize = true;
-            this.lblScoreMissed.BackColor = System.Drawing.Color.Transparent;
-            this.lblScoreMissed.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoreMissed.ForeColor = System.Drawing.Color.White;
-            this.lblScoreMissed.Location = new System.Drawing.Point(591, 107);
-            this.lblScoreMissed.Name = "lblScoreMissed";
-            this.lblScoreMissed.Size = new System.Drawing.Size(51, 55);
-            this.lblScoreMissed.TabIndex = 8;
-            this.lblScoreMissed.Text = "0\r\n";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(684, 861);
+            this.ClientSize = new System.Drawing.Size(684, 741);
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panel1.ResumeLayout(false);

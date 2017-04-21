@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace XAATArcade
 {
-    class Memory
+    public class Memory
     {
         Button btnMemoryStart = new Button();
         Button btnBack = new Button();
@@ -24,6 +25,7 @@ namespace XAATArcade
         Point pt = new Point(0, 0);
         Label lblPairsLeft = new Label();
         Label lblTimer = new Label();
+        Label lblGameOver = new Label();
         List<Control> frontList = new List<Control>();
         List<Panel> gridList = new List<Panel>();
         List<Button> backList = new List<Button>();
@@ -32,7 +34,7 @@ namespace XAATArcade
         Random rand = new Random();
         Size formSize;
         Label lblMatchesLeft = new Label();
-        System.Timers.Timer t = new System.Timers.Timer();
+        public System.Timers.Timer t = new System.Timers.Timer();
         int h, m, s;
         private XAATArcade form;
 
@@ -68,6 +70,14 @@ namespace XAATArcade
             lblTimer.Location = new Point(formSize.Width - 152, (formSize.Height - formSize.Height) + 1);
             lblTimer.Size = new Size(50, 50);
             form.Controls.Add(lblTimer);
+
+            lblGameOver = new Label();
+            lblGameOver.Location = new Point(formSize.Width - (formSize.Width / 2) - 50, formSize.Height - (formSize.Height / 2) - 50);
+            lblGameOver.Size = new Size(100, 100);
+            lblGameOver.Text = "GAME OVER";
+            lblGameOver.TextAlign = ContentAlignment.MiddleCenter;
+            lblGameOver.Visible = false;
+            form.Controls.Add(lblGameOver);
 
             h = 0;
             m = 0;
@@ -145,7 +155,7 @@ namespace XAATArcade
             pbCard2.Name = "circle";
             pbCard2.Size = new Size(width, height);
             frontList.Add(pbCard2);
-            
+
             pbCard3.Image = Properties.Resources.diamond;
             pbCard3.Name = "diamond";
             pbCard3.Size = new Size(width, height);
@@ -257,25 +267,55 @@ namespace XAATArcade
         private void onTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
         {
             form.Invoke(new Action(() =>
-            {
-                s += 1;
-                if (s == 60)
-                {
-                    s = 0;
-                    m += 1;
-                }
-                if (m == 60)
-                {
-                    m = 0;
-                    h += 1;
-                }
+                   {
+                       if (form.ContainsFocus == false)
+                       {
+                           form.disposeTimer = true;
+                       }
+                       else
+                       {
+                           form.disposeTimer = false;
+                       }
 
-                lblTimer.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), s.ToString().PadLeft(2, '0'));
-            }));
+                       if (form.disposeTimer == false)
+                       {
+                           s += 1;
+                           if (s == 60)
+                           {
+                               s = 0;
+                               m += 1;
+                           }
+                           if (m == 60)
+                           {
+                               m = 0;
+                               h += 1;
+                           }
 
-            if (m == 50)
+                           lblTimer.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), s.ToString().PadLeft(2, '0'));
+                       }
+
+
+
+                   }));
+
+            if (m == 30)
             {
                 t.Stop();
+                form.Invoke(new Action(() =>
+                {
+                    GameOver();
+                }));
+            }
+        }
+
+        void GameOver()
+        {
+            lblGameOver.BringToFront();
+            lblGameOver.Visible = true;
+
+            foreach (Button b in backList)
+            {
+                b.Enabled = false;
             }
         }
 
@@ -366,8 +406,13 @@ namespace XAATArcade
 
             for (int i = form.Controls.Count - 1; i >= 0; i--)
             {
-                //if (this.Controls[i].Name != )
-                form.Controls[i].Dispose();
+                if (form.Controls[i].Name != "Config Button")
+                {
+                    if (form.Controls[i].Name != "Config Panel")
+                    {
+                        form.Controls[i].Dispose();
+                    }
+                }
             }
         }
 
@@ -385,6 +430,7 @@ namespace XAATArcade
             t.Stop();
             ClearMemory();
             form.CreateTitlePage();
+            form.memoryPlayed = false;
         }
     }
 }

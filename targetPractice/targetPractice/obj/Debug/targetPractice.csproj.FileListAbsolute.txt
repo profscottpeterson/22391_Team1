@@ -16,3 +16,6 @@ C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.pdb
 C:\Users\User\Desktop\targetPractice\targetPractice\bin\Debug\targetPractice.exe.config
 C:\Users\User\Desktop\targetPractice\targetPractice\bin\Debug\targetPractice.exe
 C:\Users\User\Desktop\targetPractice\targetPractice\bin\Debug\targetPractice.pdb
+C:\Users\User\Source\Repos\22393_Team1\targetPractice\targetPractice\bin\Debug\targetPractice.exe.config
+C:\Users\User\Source\Repos\22393_Team1\targetPractice\targetPractice\obj\Debug\targetPractice.exe
+C:\Users\User\Source\Repos\22393_Team1\targetPractice\targetPractice\obj\Debug\targetPractice.pdb

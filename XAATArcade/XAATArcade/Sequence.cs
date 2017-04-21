@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace XAATArcade
 {
-    class Sequence
+    public class Sequence
     {
         Button btnSequenceStart = new Button();
         Button btnBack = new Button();
@@ -35,7 +35,7 @@ namespace XAATArcade
             CreateSequenceStart();
         }
 
-        private void CreateSequenceStart()
+        public void CreateSequenceStart()
         {
             btnBack = new Button();
             btnBack.Location = new Point((formSize.Width - formSize.Width) + 1, (formSize.Height - formSize.Height) + 1);
@@ -88,7 +88,7 @@ namespace XAATArcade
             }
         }
 
-        private void SequenceStart(object sender, EventArgs e)
+        public void SequenceStart(object sender, EventArgs e)
         {
             PlaySound();
             if (sequenceList.Count > 0)
@@ -150,6 +150,7 @@ namespace XAATArcade
                 if (clickedList[i] != pickedList[i])
                 {
                     error = true;
+                    MessageBox.Show("Game Over");
                     break;
                 }
             }
@@ -166,7 +167,7 @@ namespace XAATArcade
             }
         }
 
-        private void PlaySound()
+        public void PlaySound()
         {
             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
             player.Stream = Properties.Resources.click;
@@ -174,7 +175,7 @@ namespace XAATArcade
             player.Play();
         }
 
-        private void ClearSequence()
+        public void ClearSequence()
         {
             sequenceList.Clear();
             gridList.Clear();
@@ -183,12 +184,17 @@ namespace XAATArcade
 
             for (int i = form.Controls.Count - 1; i >= 0; i--)
             {
-                //if (this.Controls[i].Name != )
-                form.Controls[i].Dispose();
+                if (form.Controls[i].Name != "Config Button")
+                {
+                    if (form.Controls[i].Name != "Config Panel")
+                    {
+                        form.Controls[i].Dispose();
+                    }
+                }
             }
         }
 
-        private void BackButton(object sender, EventArgs e)
+        public void BackButton(object sender, EventArgs e)
         {
             PlaySound();
             ClearSequence();
