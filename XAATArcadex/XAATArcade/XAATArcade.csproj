@@ -177,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Sounds\click.wav" />
+    <None Include="Resources\cog.png" />
+    <None Include="Resources\cog.bmp" />
     <None Include="Resources\reflexgame.gif" />
     <None Include="Resources\matchinggame.gif" />
     <None Include="Resources\sequencegame.gif" />
@@ -193,6 +195,12 @@
     <None Include="Resources\back2.png" />
     <None Include="Resources\8-BITWONDER.TTF" />
     <None Include="Resources\back1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\targetPractice\targetPractice\targetPractice.csproj">
+      <Project>{84d6a737-785f-44dc-b132-d799834344b7}</Project>
+      <Name>targetPractice</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

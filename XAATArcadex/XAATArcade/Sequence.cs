@@ -31,6 +31,7 @@ namespace XAATArcade
         private XAATArcade form;
         Font font;
         FontFamily ff;
+
         public Sequence(XAATArcade parent, Size parentSize)
         {
             form = parent;
@@ -97,7 +98,7 @@ namespace XAATArcade
             lblScore.AutoSize = true;
             lblScoreText.Font = new Font(ff, 15f, FontStyle.Regular);
             lblScoreText.ForeColor = Color.White;
-           lblScoreText.TextAlign = ContentAlignment.MiddleCenter;
+            lblScoreText.TextAlign = ContentAlignment.MiddleCenter;
             form.Controls.Add(lblScoreText);
 
             for (int row = 0; row <= 2; row++)
@@ -212,6 +213,7 @@ namespace XAATArcade
                 if (clickedList[i] != pickedList[i])
                 {
                     error = true;
+                    MessageBox.Show("Game Over");
                     break;
                 }
             }
@@ -245,8 +247,13 @@ namespace XAATArcade
 
             for (int i = form.Controls.Count - 1; i >= 0; i--)
             {
-                //if (this.Controls[i].Name != )
-                form.Controls[i].Dispose();
+                if (form.Controls[i].Name != "Config Button")
+                {
+                    if (form.Controls[i].Name != "Config Panel")
+                    {
+                        form.Controls[i].Dispose();
+                    }
+                }
             }
         }
 

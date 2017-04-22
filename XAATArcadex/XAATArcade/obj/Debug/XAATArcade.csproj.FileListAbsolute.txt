@@ -34,3 +34,14 @@ C:\Users\22667389\Desktop\v3\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csprojRe
 C:\Users\22667389\Desktop\v3\XAATArcade\XAATArcade\obj\Debug\XAATArcade.XAATArcade.resources
 C:\Users\22667389\Desktop\v3\XAATArcade\XAATArcade\obj\Debug\XAATArcade.Properties.Resources.resources
 C:\Users\22667389\Desktop\v3\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.GenerateResource.Cache
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\XAATArcade.exe.config
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.exe
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\XAATArcade.exe
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\XAATArcade.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.csprojResolveAssemblyReference.cache
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.XAATArcade.resources
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.Properties.Resources.resources
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.csproj.GenerateResource.Cache
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\targetPractice.exe
+C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\targetPractice.pdb
