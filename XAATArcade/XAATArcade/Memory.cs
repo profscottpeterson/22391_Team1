@@ -81,6 +81,7 @@ namespace XAATArcade
             btnBack.Size = new Size(50, 50);
             btnBack.Text = "Back";
             btnBack.Click += (s, z) => { BackButton(s, z); };
+            btnBack.MouseDown += (s, z) => { form.PlaySound(s, z); };
             btnBack.BackColor = Color.Blue;
             form.Controls.Add(btnBack);
             btnBack.Font = font;
@@ -90,6 +91,7 @@ namespace XAATArcade
             btnMemoryStart.Size = new Size(50, 50);
             btnMemoryStart.Text = "New Game";
             btnMemoryStart.Click += (s, z) => { CreateCards(s, z); };
+            btnMemoryStart.MouseDown += (s, z) => { form.PlaySound(s, z); };
             btnMemoryStart.BackColor = Color.Blue;
             btnMemoryStart.Font = font;
             form.Controls.Add(btnMemoryStart);
@@ -142,16 +144,14 @@ namespace XAATArcade
 
         void CreateCards(object sender, EventArgs e)
         {
-            PlaySound();
             ClearMemory();
             CreateMemoryStart();
 
             t = new System.Timers.Timer();
             t.Interval = 10;
-            t.Elapsed += onTimeEvent;
+            t.Elapsed += OnTimeEvent;
             t.Stop();
             t.Start();
-            //form.BackColor = Color.Black;
 
             lblPairsLeft.Text = "10";
             for (int row = 0; row <= 3; row++)
@@ -173,6 +173,7 @@ namespace XAATArcade
                     btnCardBacks.BackgroundImage = Properties.Resources.back4;
                     backList.Add(btnCardBacks);
                     btnCardBacks.Click += (s, z) => { CardSelect(s, z); };
+                    btnCardBacks.MouseDown += (s, z) => { form.PlaySound(s, z); };
                     form.Controls.Add(btnCardBacks);
                 }
             }
@@ -321,7 +322,7 @@ namespace XAATArcade
 
         }
 
-        private void onTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
+        private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
         {
             form.Invoke(new Action(() =>
             {
@@ -374,7 +375,6 @@ namespace XAATArcade
 
         void CardSelect(object sender, EventArgs e)
         {
-            PlaySound();
             btnMemoryStart.Focus();
             Button clickedBack = (Button)sender;
             int count = 0;
@@ -469,20 +469,11 @@ namespace XAATArcade
             }
         }
 
-        private void PlaySound()
-        {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.Stream = Properties.Resources.click;
-            player.Load();
-            player.Play();
-        }
-
         private void BackButton(object sender, EventArgs e)
         {
-            PlaySound();
             t.Stop();
             ClearMemory();
-            form.CreateTitlePage();
+            form.AddTitlePage();
             form.memoryPlayed = false;
         }
     }

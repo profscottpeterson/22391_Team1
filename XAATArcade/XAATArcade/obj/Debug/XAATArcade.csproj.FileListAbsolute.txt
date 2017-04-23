@@ -45,3 +45,5 @@ C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArca
 C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\obj\Debug\XAATArcade.csproj.GenerateResource.Cache
 C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\targetPractice.exe
 C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\targetPractice.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.exe
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.pdb

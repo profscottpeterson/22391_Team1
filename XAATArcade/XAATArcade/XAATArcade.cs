@@ -52,7 +52,7 @@ namespace XAATArcade
             this.BackColor = Color.Black;
         }
 
-        public void CreateTitlePage()
+        private void CreateTitlePage()
         {
             pbTitle.Location = new Point((((this.Width / 2) /2) /2) + 10, 10);
             pbTitle.Size = new Size(350, 300);
@@ -66,6 +66,7 @@ namespace XAATArcade
             btnSequence.Click += (s, z) => { Sequence(s, z); };
             btnSequence.MouseHover += (s, z) => { SequenceHover(s, z); };
             btnSequence.MouseLeave += (s, z) => { SequenceMouseLeave(s, z); };
+            btnSequence.MouseDown += (s, z) => { PlaySound(s, z); };
             btnSequence.FlatStyle = FlatStyle.Flat;
             this.Controls.Add(btnSequence);
 
@@ -75,6 +76,7 @@ namespace XAATArcade
             btnMemory.Click += (s, z) => { Memory(s, z); };
             btnMemory.MouseHover += (s, z) => { MemoryHover(s, z); };
             btnMemory.MouseLeave += (s, z) => { MemoryMouseLeave(s, z); };
+            btnMemory.MouseDown += (s, z) => { PlaySound(s, z); };
             btnMemory.FlatStyle = FlatStyle.Flat;
             this.Controls.Add(btnMemory);
 
@@ -84,6 +86,7 @@ namespace XAATArcade
             btnReflex.Click += (s, z) => { Reflex(s, z); };
             btnReflex.MouseHover += (s, z) => { ReflexHover(s, z); };
             btnReflex.MouseLeave += (s, z) => { ReflexMouseLeave(s, z); };
+            btnReflex.MouseDown += (s, z) => { PlaySound(s, z); };
             btnReflex.FlatStyle = FlatStyle.Flat;
             this.Controls.Add(btnReflex);
         }
@@ -98,6 +101,7 @@ namespace XAATArcade
             btnConfig.FlatStyle = FlatStyle.Flat;
             btnConfig.FlatAppearance.BorderSize = 0;
             btnConfig.Click += (s, z) => { OpenConfig(s, z); };
+            btnConfig.MouseDown += (s, z) => { PlaySound(s, z); };
             Controls.Add(btnConfig);
 
             pnlConfig.SetBounds((formSize.Width - formSize.Width) + 20, (formSize.Height - formSize.Height) + 20, formSize.Width - 40, formSize.Height - 40);
@@ -111,6 +115,7 @@ namespace XAATArcade
             btnClose.Text = "Close";
             btnClose.TextAlign = ContentAlignment.MiddleCenter;
             btnClose.Click += (s, z) => { CloseConfig(s, z); };
+            btnClose.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlConfig.Controls.Add(btnClose);
 
             btnChangeBackgroundColor.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 10);
@@ -118,7 +123,16 @@ namespace XAATArcade
             btnChangeBackgroundColor.Text = "Change Background Color";
             btnChangeBackgroundColor.TextAlign = ContentAlignment.MiddleCenter;
             btnChangeBackgroundColor.Click += (s, z) => { ChangeBackColor(s, z); };
+            btnChangeBackgroundColor.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlConfig.Controls.Add(btnChangeBackgroundColor);
+        }
+
+        public void AddTitlePage()
+        {
+            this.Controls.Add(pbTitle);
+            this.Controls.Add(btnSequence);
+            this.Controls.Add(btnMemory);
+            this.Controls.Add(btnReflex);
         }
 
         private void RemoveTitlePage()
@@ -132,7 +146,6 @@ namespace XAATArcade
         #region Memory
         private void Memory(object sender, EventArgs e)
         {
-            PlaySound();
             memoryPlayed = true;
             RemoveTitlePage();
             memory = new Memory(this, formSize);
@@ -156,7 +169,6 @@ namespace XAATArcade
         #region Sequence
         private void Sequence(object sender, EventArgs e)
         {
-            PlaySound();
             sequencePlayed = true;
             RemoveTitlePage();
             sequence = new Sequence(this, formSize);
@@ -180,7 +192,6 @@ namespace XAATArcade
         #region Reflex
         private void Reflex(object sender, EventArgs e)
         {
-            PlaySound();
             reflex = new Form1();
             reflex.Show();
         }
@@ -200,7 +211,7 @@ namespace XAATArcade
         }
         #endregion
 
-        private void PlaySound()
+        public void PlaySound(object sender, EventArgs e)
         {
             System.Media.SoundPlayer player = new System.Media.SoundPlayer();
             player.Stream = Properties.Resources.click;
@@ -224,8 +235,7 @@ namespace XAATArcade
                 memory.t.Stop();
                 disposeTimer = true;
             }
-
-            PlaySound();
+            
             pnlConfig.BringToFront();
             pnlConfig.Visible = true;
         }
@@ -242,7 +252,6 @@ namespace XAATArcade
 
         public void CloseConfig(object sender, EventArgs e)
         {
-            PlaySound();
             pnlConfig.Visible = false;
             for (int i = Controls.Count - 1; i >= 0; i--)
             {

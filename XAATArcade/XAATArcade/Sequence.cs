@@ -70,6 +70,7 @@ namespace XAATArcade
             btnBack.Text = "Back";
             btnBack.BackColor = Color.Blue;
             btnBack.Click += (s, z) => { BackButton(s, z); };
+            btnBack.MouseDown += (s, z) => { form.PlaySound(s, z); };
             form.Controls.Add(btnBack);
 
             btnSequenceStart = new Button();
@@ -79,6 +80,7 @@ namespace XAATArcade
             btnSequenceStart.Text = "Start";
             btnSequenceStart.BackColor = Color.Blue;
             btnSequenceStart.Click += (s, z) => { SequenceStart(s, z); };
+            btnSequenceStart.MouseDown += (s, z) => { form.PlaySound(s, z); };
             form.Controls.Add(btnSequenceStart);
 
             lblScore = new Label();
@@ -119,8 +121,9 @@ namespace XAATArcade
                     pnlGrid.BackgroundImage = Properties.Resources.sequenceBoarder;
                     pnlGrid.Click += (s, z) => { SequenceSelect(s, z); };
                     pnlGrid.MouseDoubleClick += (s, z) => { SequenceSelect(s, z); };
-                    pnlGrid.MouseHover += (s, z) => { panelhover(s, z); };
-                    pnlGrid.MouseLeave += (s, z) => { panelleave(s, z); };
+                    pnlGrid.MouseHover += (s, z) => { PanelHover(s, z); };
+                    pnlGrid.MouseLeave += (s, z) => { PanelLeave(s, z); };
+                    pnlGrid.MouseDown += (s, z) => { form.PlaySound(s, z); };
                     gridList.Add(pnlGrid);
                     form.Controls.Add(pnlGrid);
                 }
@@ -129,7 +132,6 @@ namespace XAATArcade
 
         private void SequenceStart(object sender, EventArgs e)
         {
-            PlaySound();
             if (sequenceList.Count > 0)
             {
                 ClearSequence();
@@ -139,7 +141,7 @@ namespace XAATArcade
             StartSequence();
         }
 
-        private void panelhover(object sender, EventArgs e)
+        private void PanelHover(object sender, EventArgs e)
         {
             foreach (Panel p in gridList)
             {
@@ -150,7 +152,7 @@ namespace XAATArcade
             }
         }
 
-        private void panelleave(object sender, EventArgs e)
+        private void PanelLeave(object sender, EventArgs e)
         {
             foreach (Panel p in gridList)
             {
@@ -195,9 +197,7 @@ namespace XAATArcade
 
         void SequenceSelect(object sender, EventArgs e)
         {
-            PlaySound();
             Panel clickedSquare = (Panel)sender;
-
             clickedList.Add(clickedSquare);
 
             if (clickedList.Count == pickedList.Count)
@@ -230,14 +230,6 @@ namespace XAATArcade
             }
         }
 
-        private void PlaySound()
-        {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.Stream = Properties.Resources.click;
-            player.Load();
-            player.Play();
-        }
-
         private void ClearSequence()
         {
             sequenceList.Clear();
@@ -259,9 +251,9 @@ namespace XAATArcade
 
         private void BackButton(object sender, EventArgs e)
         {
-            PlaySound();
             ClearSequence();
-            form.CreateTitlePage();
+            form.AddTitlePage();
+            form.sequencePlayed = false;
         }
     }
 }
