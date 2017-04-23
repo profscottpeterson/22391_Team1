@@ -1,0 +1,21 @@
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\bin\Debug\targetPractice.exe.config
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\bin\Debug\targetPractice.exe
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\bin\Debug\targetPractice.pdb
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\obj\Debug\targetPractice.csprojResolveAssemblyReference.cache
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\obj\Debug\targetPractice.Form1.resources
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\obj\Debug\targetPractice.Properties.Resources.resources
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\obj\Debug\targetPractice.csproj.GenerateResource.Cache
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\obj\Debug\targetPractice.exe
+C:\Users\Xavier\Desktop\temsoftwaredevelopment reflex game\targetPractice\targetPractice\obj\Debug\targetPractice.pdb
+C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.Form1.resources
+C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.Properties.Resources.resources
+C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.exe
+C:\Users\User\Desktop\targetPractice\targetPractice\obj\Debug\targetPractice.pdb
+C:\Users\User\Desktop\targetPractice\targetPractice\bin\Debug\targetPractice.exe.config
+C:\Users\User\Desktop\targetPractice\targetPractice\bin\Debug\targetPractice.exe
+C:\Users\User\Desktop\targetPractice\targetPractice\bin\Debug\targetPractice.pdb
+C:\Users\User\Source\Repos\22393_Team1\targetPractice\targetPractice\bin\Debug\targetPractice.exe.config
+C:\Users\User\Source\Repos\22393_Team1\targetPractice\targetPractice\obj\Debug\targetPractice.exe
+C:\Users\User\Source\Repos\22393_Team1\targetPractice\targetPractice\obj\Debug\targetPractice.pdb

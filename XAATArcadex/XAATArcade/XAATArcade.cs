@@ -28,7 +28,6 @@ namespace XAATArcade
         public bool disposeTimer = false;
         Panel pnlConfig = new Panel();
         Size formSize;
-        //System.Timers.Timer t = new System.Timers.Timer();
         Memory memory;
         Sequence sequence;
         Form1 reflex;
@@ -50,11 +49,11 @@ namespace XAATArcade
             formSize = ClientSize;
             CreateTitlePage();
             CreateConfig();
+            this.BackColor = Color.Black;
         }
 
         public void CreateTitlePage()
         {
-            this.BackColor = Color.Black;
             pbTitle.Location = new Point((((this.Width / 2) /2) /2) + 10, 10);
             pbTitle.Size = new Size(350, 300);
             pbTitle.Image = Properties.Resources.xaatarcadetitle;

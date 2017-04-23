@@ -197,7 +197,7 @@
     <None Include="Resources\back1.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\targetPractice\targetPractice\targetPractice.csproj">
+    <ProjectReference Include="..\targetPractice\targetPractice\targetPractice.csproj">
       <Project>{84d6a737-785f-44dc-b132-d799834344b7}</Project>
       <Name>targetPractice</Name>
     </ProjectReference>
