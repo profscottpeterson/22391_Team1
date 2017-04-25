@@ -213,7 +213,7 @@ namespace XAATArcade
                 if (clickedList[i] != pickedList[i])
                 {
                     error = true;
-                    MessageBox.Show("Game Over");
+                    MessageBox.Show("Game Over. New game will start.", "Game Over");
                     break;
                 }
             }

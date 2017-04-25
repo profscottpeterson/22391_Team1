@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using System.Timers;
 using System.Runtime.InteropServices;
 using targetPractice;
+using System.Media;
+using System.IO;
+
 
 namespace XAATArcade
 {
@@ -23,15 +26,24 @@ namespace XAATArcade
         Button btnReflex = new Button();
         Button btnClose = new Button();
         Button btnChangeBackgroundColor = new Button();
+        RadioButton rdBtnButtonSoundOn = new RadioButton();
+        RadioButton rdBtnButtonSoundOff = new RadioButton();
+        RadioButton rdBtnBackgroundSoundOn = new RadioButton();
+        RadioButton rdBtnBackgroundSoundOff = new RadioButton();
         public bool memoryPlayed = false;
         public bool sequencePlayed = false;
         public bool disposeTimer = false;
+        bool buttonSoundOn = true;
+        bool backgroundSoundOn = true;
         Panel pnlConfig = new Panel();
+        Panel pnlButtonSound = new Panel();
+        Panel pnlBackgroundSound = new Panel();
         Size formSize;
         Memory memory;
         Sequence sequence;
         Form1 reflex;
         public Font font;
+        WMPLib.WindowsMediaPlayer Player = new WMPLib.WindowsMediaPlayer();
 
         // make backbutton availibale for all games
         // create config screen
@@ -50,6 +62,10 @@ namespace XAATArcade
             CreateTitlePage();
             CreateConfig();
             this.BackColor = Color.Black;
+
+            Player.URL = System.IO.Directory.GetCurrentDirectory() + "/Sounds/backgroundMusic.wav";
+            (Player.settings as WMPLib.IWMPSettings).setMode("loop", true);
+            PlayBackgroundSound();
         }
 
         private void CreateTitlePage()
@@ -125,6 +141,56 @@ namespace XAATArcade
             btnChangeBackgroundColor.Click += (s, z) => { ChangeBackColor(s, z); };
             btnChangeBackgroundColor.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlConfig.Controls.Add(btnChangeBackgroundColor);
+
+            pnlButtonSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 70);
+            pnlButtonSound.Size = new Size(200, 60);
+            pnlButtonSound.Name = "Button Sound Panel";
+            pnlButtonSound.BackColor = Color.Yellow;
+            pnlConfig.Controls.Add(pnlButtonSound);
+
+            rdBtnButtonSoundOn.Location = new Point(5, 5);
+            rdBtnButtonSoundOn.Click += (s, z) => { TurnButtonSoundOn(s, z); };
+            rdBtnButtonSoundOn.Width = 200;
+            rdBtnButtonSoundOn.Text = "Button Sound On";
+            rdBtnButtonSoundOn.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnButtonSoundOn.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnButtonSoundOn.Checked = true;
+            rdBtnButtonSoundOn.MouseDown += (s, z) => { PlaySound(s, z); };
+            pnlButtonSound.Controls.Add(rdBtnButtonSoundOn);
+
+            rdBtnButtonSoundOff.Location = new Point(5, 30);
+            rdBtnButtonSoundOff.Click += (s, z) => { TurnButtonSoundOff(s, z); };
+            rdBtnButtonSoundOff.Width = 200;
+            rdBtnButtonSoundOff.Text = "Button Sound Off";
+            rdBtnButtonSoundOff.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnButtonSoundOff.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnButtonSoundOff.MouseDown += (s, z) => { PlaySound(s, z); };
+            pnlButtonSound.Controls.Add(rdBtnButtonSoundOff);
+
+            pnlBackgroundSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 130);
+            pnlBackgroundSound.Size = new Size(200, 60);
+            pnlBackgroundSound.Name = "Background Sound Panel";
+            pnlBackgroundSound.BackColor = Color.AliceBlue;
+            pnlConfig.Controls.Add(pnlBackgroundSound);
+
+            rdBtnBackgroundSoundOn.Location = new Point(5, 5);
+            rdBtnBackgroundSoundOn.Click += (s, z) => { TurnBackgroundSoundOn(s, z); };
+            rdBtnBackgroundSoundOn.Width = 200;
+            rdBtnBackgroundSoundOn.Text = "Background Sound On";
+            rdBtnBackgroundSoundOn.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnBackgroundSoundOn.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnBackgroundSoundOn.Checked = true;
+            rdBtnBackgroundSoundOn.MouseDown += (s, z) => { PlaySound(s, z); };
+            pnlBackgroundSound.Controls.Add(rdBtnBackgroundSoundOn);
+
+            rdBtnBackgroundSoundOff.Location = new Point(5, 30);
+            rdBtnBackgroundSoundOff.Click += (s, z) => { TurnBackgroundSoundOff(s, z); };
+            rdBtnBackgroundSoundOff.Width = 200;
+            rdBtnBackgroundSoundOff.Text = "Background Sound Off";
+            rdBtnBackgroundSoundOff.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnBackgroundSoundOff.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnBackgroundSoundOff.MouseDown += (s, z) => { PlaySound(s, z); };
+            pnlBackgroundSound.Controls.Add(rdBtnBackgroundSoundOff);
         }
 
         public void AddTitlePage()
@@ -193,7 +259,7 @@ namespace XAATArcade
         private void Reflex(object sender, EventArgs e)
         {
             reflex = new Form1();
-            reflex.Show();
+            reflex.ShowDialog();
         }
 
         private void ReflexHover(object sender, EventArgs e)
@@ -210,14 +276,6 @@ namespace XAATArcade
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
         }
         #endregion
-
-        public void PlaySound(object sender, EventArgs e)
-        {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.Stream = Properties.Resources.click;
-            player.Load();
-            player.Play();
-        }
 
         #region Config
         public void OpenConfig(object sender, EventArgs e)
@@ -266,6 +324,58 @@ namespace XAATArcade
                 disposeTimer = false;
                 memory.t.Start();
             }
+        }
+        #endregion
+
+        #region Sound
+        private void TurnButtonSoundOn(object sender, EventArgs e)
+        {
+            buttonSoundOn = true;
+        }
+
+        private void TurnButtonSoundOff(object sender, EventArgs e)
+        {
+            buttonSoundOn = false;
+        }
+
+        public void PlaySound(object sender, EventArgs e)
+        {
+            if (buttonSoundOn == true)
+            {
+                new System.Threading.Thread(() => {
+                    var a = new System.Windows.Media.MediaPlayer();
+                    a.Open(new System.Uri(System.IO.Directory.GetCurrentDirectory() + "/Sounds/click.wav"));
+                    a.Play();
+                }).Start();
+            }
+        }
+
+        private void TurnBackgroundSoundOn(object sender, EventArgs e)
+        {
+            if (backgroundSoundOn == false)
+            {
+                backgroundSoundOn = true;
+                PlayBackgroundSound();
+            }
+        }
+
+        private void TurnBackgroundSoundOff(object sender, EventArgs e)
+        {
+            if (backgroundSoundOn == true)
+            {
+                backgroundSoundOn = false;
+                StopBackgroundSound();
+            }
+        }
+
+        public void PlayBackgroundSound()
+        {
+            Player.controls.play();
+        }
+
+        public void StopBackgroundSound()
+        {
+            Player.controls.pause();
         }
         #endregion
 

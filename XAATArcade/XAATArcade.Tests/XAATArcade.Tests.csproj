@@ -56,6 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\targetPractice\targetPractice\targetPractice.csproj">
+      <Project>{84d6a737-785f-44dc-b132-d799834344b7}</Project>
+      <Name>targetPractice</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XAATArcade\XAATArcade.csproj">
       <Project>{678f2261-a99a-42a4-b4a2-5c95b2efcfa2}</Project>
       <Name>XAATArcade</Name>

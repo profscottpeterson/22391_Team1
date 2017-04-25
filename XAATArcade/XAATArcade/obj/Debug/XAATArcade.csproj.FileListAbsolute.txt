@@ -47,3 +47,5 @@ C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\targetPr
 C:\Users\User\Source\Repos\22393_Team1\XAATArcadex\XAATArcade\bin\Debug\targetPractice.pdb
 C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.exe
 C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.ResolveComReference.cache
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\Interop.WMPLib.dll
