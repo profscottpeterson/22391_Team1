@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XAATArcade;
 using System.Windows.Input;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace XAATArcade.Tests
 {
@@ -44,15 +43,6 @@ namespace XAATArcade.Tests
            // main.sequence.ClearSequence
 
 
-        }
-
-        [TestMethod]
-        public void SequenceOpen()
-        {
-            Form form1 = new Form();
-            form1.ShowDialog();
-
-            Expect
         }
 
 
