@@ -22,6 +22,16 @@ namespace targetPractice
         {
             InitializeComponent();
             this.loadFont();
+            hitplayer.Stream = Properties.Resources.NFF_glassy_tap_02;
+            missplayer.Stream = Properties.Resources.NFF_clog_up;
+            hitplayer.Load();
+            missplayer.Load();
+            tBallMovement.Stop();
+            tBallSizeChanger.Stop();
+            tBallGenerator.Stop();
+            this.btnStart.Enabled = true;
+            this.btnStart.Visible = true;
+            btnStart.BackColor = Color.White;
         }
 
         class DoubleBufferedPanel : Panel { public DoubleBufferedPanel() : base() { DoubleBuffered = true; } }
@@ -32,7 +42,6 @@ namespace targetPractice
         List<bool> ballIsGrowing = new List<bool>();
         Size formSize;
         Random rand = new Random();
-        System.Timers.Timer t;
         int h, m, s;
         List<Image> BallColors = new List<Image> {targetPractice.Properties.Resources.blue, targetPractice.Properties.Resources.red, targetPractice.Properties.Resources.green, targetPractice.Properties.Resources.yellow, targetPractice.Properties.Resources.orange, targetPractice.Properties.Resources.purple};
         List<int> BallSize = new List<int> { 80,70,60,50,40 };
@@ -41,6 +50,9 @@ namespace targetPractice
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbfont, uint cbfont, IntPtr pdv, [In] ref uint pcFonts);
         FontFamily ff;
         Font font;
+
+        System.Media.SoundPlayer hitplayer = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer missplayer = new System.Media.SoundPlayer();
 
         private void tBallGenerator_Tick(object sender, EventArgs e)
         {
@@ -82,11 +94,6 @@ namespace targetPractice
                 true);
 
             this.UpdateStyles();
-             
-            t = new System.Timers.Timer();
-            t.Interval = 10;
-            t.Elapsed += onTimeEvent;
-            t.Start();
             this.MouseDown += new MouseEventHandler(Form1_Click);
         }
 
@@ -189,46 +196,12 @@ namespace targetPractice
             }
         }
 
-        private void onTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            Invoke(new Action(() =>
-            {
-                s += 1;
-                if (s == 60)
-                {
-                    s = 0;
-                    m += 1;
-                }
-                if (m == 60)
-                {
-                    m = 0;
-                    h += 1;
-                }
-
-                lblTimer.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), s.ToString().PadLeft(2, '0'));
-            }));
-
-            if (h == 2)
-            {
-                t.Stop();
-                tBallMovement.Stop();
-                tBallGenerator.Stop();
-                tBallSizeChanger.Stop();
-                s = 0;
-                m = 0;
-                h = 0;
-                btnStart.Enabled = true;
-                btnStart.Visible = true;
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (panel2.Enabled == true)
             {
                 panel2.Enabled = false;
                 panel2.Visible = false;
-                t.Stop();
                 tBallMovement.Stop();
                 tBallGenerator.Stop();
                 tBallSizeChanger.Stop();
@@ -240,7 +213,6 @@ namespace targetPractice
             {
                 panel2.Enabled = true;
                 panel2.Visible = true;
-                t.Stop();
                 tBallMovement.Stop();
                 tBallGenerator.Stop();
                 tBallSizeChanger.Stop();
@@ -278,10 +250,6 @@ namespace targetPractice
             ballIsGrowing.Clear();
             btnStart.Enabled = true;
             btnStart.Visible = true;
-            lblTimer.Text = "00:00:00";
-            s = 0;
-            m = 0;
-            h = 0;
         }
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -290,10 +258,6 @@ namespace targetPractice
             ballIsGrowing.Clear();
             btnStart.Enabled = true;
             btnStart.Visible = true;
-            lblTimer.Text = " 00:00:00";
-            s = 0;
-            m = 0;
-            h = 0;
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
@@ -303,10 +267,6 @@ namespace targetPractice
             ballIsGrowing.Clear();
             btnStart.Enabled = true;
             btnStart.Visible = true;
-            lblTimer.Text = " 00:00:00";
-            s = 0;
-            m = 0;
-            h = 0;
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
@@ -316,10 +276,6 @@ namespace targetPractice
             ballIsGrowing.Clear();
             btnStart.Enabled = true;
             btnStart.Visible = true;
-            lblTimer.Text = " 00:00:00";
-            s = 0;
-            m = 0;
-            h = 0;
         }
 
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
@@ -329,15 +285,10 @@ namespace targetPractice
             ballIsGrowing.Clear();
             btnStart.Enabled = true;
             btnStart.Visible = true;
-            lblTimer.Text = " 00:00:00";
-            s = 0;
-            m = 0;
-            h = 0;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            t.Start();
             tBallMovement.Start();
             tBallGenerator.Start();
             tBallSizeChanger.Start();
@@ -349,7 +300,6 @@ namespace targetPractice
         private void Form1_Closing(object sender, FormClosingEventArgs e)
         {
             tBallMovement.Stop();
-            t.Stop();
             tBallSizeChanger.Stop();
             tBallGenerator.Stop();
             Application.DoEvents();
@@ -378,15 +328,13 @@ namespace targetPractice
 
             font = new Font(ff, 15f, FontStyle.Regular);
 
-            lblTimer.Font = new Font(ff, 28, FontStyle.Regular);
-            lblScoreHit.Font = new Font(ff, 28, FontStyle.Regular);
+            lblScoreHit.Font = new Font(ff, 48, FontStyle.Regular);
             lblScoreHit.ForeColor = Color.Green;
             lblBallColor.Font = new Font(ff, 16, FontStyle.Regular);
             lblBallSpeed.Font = new Font(ff, 16, FontStyle.Regular);
             lblBallSize.Font = new Font(ff, 16, FontStyle.Regular);
             lblCursorType.Font = new Font(ff, 16, FontStyle.Regular);
             lblBallMovement.Font = new Font(ff, 16, FontStyle.Regular);
-            lblTime.Font = new Font(ff, 16, FontStyle.Regular);
             btnStart.Font = new Font(ff, 16, FontStyle.Regular);
         }
 
@@ -403,12 +351,14 @@ namespace targetPractice
                     ballIsGrowing.Remove(ballIsGrowing[ball_num]);
                     num_Balls_Hit += 1;
                     ballhit = true;
+                    hitplayer.Play();
                 }
             }
 
             if (ballhit == false)
             {
                 num_Balls_Missed += 1;
+                missplayer.Play();
             }
         }
 

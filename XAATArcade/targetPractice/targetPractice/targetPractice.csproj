@@ -89,9 +89,6 @@
     <None Include="Resources\target11.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bottom.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\life1.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +126,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NFF-clog-up.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NFF-glassy-tap-02.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\life.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cog.png" />
