@@ -11,11 +11,15 @@ using System.Timers;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
-
+/// <summary>
+/// Memory game, makes cards out of picture boxes.  On click, flips the cards and then checks if they are the same
+/// if they are, deletes the picture boxes.  If not, Flips them over again
+/// </summary>
 namespace XAATArcade
 {
     class Memory
     {
+        //Button Assembly Code
         Button btnMemoryStart = new Button();
         Button btnBack = new Button();
         Button btnCardBacks = new Button();
@@ -30,29 +34,32 @@ namespace XAATArcade
         Label lblPairsLeftDesc = new Label();
         Label lblTimerDesc = new Label();
         Label lblGameOver = new Label();
+        //Group of lists
         List<Control> frontList = new List<Control>();
         List<Panel> gridList = new List<Panel>();
         List<Button> backList = new List<Button>();
         List<Panel> matchList = new List<Panel>();
         List<Button> matchBackList = new List<Button>();
+        //Random number Assembly for matching list
         Random rand = new Random();
         Size formSize;
         Label lblMatchesLeft = new Label();
         public System.Timers.Timer t = new System.Timers.Timer();
         int h, m, s;
         private XAATArcade form;
-
+        //Memory game Assembly method
         public Memory(XAATArcade parent, Size parentSize)
         {
             form = parent;
             formSize = parentSize;
             CreateMemoryStart();
         }
-
+        //Import font
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
         Font font;
         FontFamily ff;
+        //Method to set fonts and buttons most noteably the start and back buttons dynamicly
         public void CreateMemoryStart()
         {
             byte[] fontArray = Properties.Resources._8_BITWONDER;
@@ -141,7 +148,7 @@ namespace XAATArcade
             m = 0;
             s = 0;
         }
-
+        //Starts the timer and start button after clearing the memory game
         void CreateCards(object sender, EventArgs e)
         {
             ClearMemory();
@@ -152,7 +159,7 @@ namespace XAATArcade
             t.Elapsed += OnTimeEvent;
             t.Stop();
             t.Start();
-
+            //makes the panels for the cards
             lblPairsLeft.Text = "10";
             for (int row = 0; row <= 3; row++)
             {
@@ -177,12 +184,12 @@ namespace XAATArcade
                     form.Controls.Add(btnCardBacks);
                 }
             }
-
+            
             foreach (Button x in backList)
             {
                 x.BringToFront();
             }
-
+            //Setting up the different picture boxes
             PictureBox pbCard1 = new PictureBox();
             PictureBox pbCard2 = new PictureBox();
             PictureBox pbCard3 = new PictureBox();
@@ -203,7 +210,7 @@ namespace XAATArcade
             PictureBox pbCard18 = new PictureBox();
             PictureBox pbCard19 = new PictureBox();
             PictureBox pbCard20 = new PictureBox();
-
+            //Different image files for each of the cards
             pbCard1.Image = Properties.Resources.bowAndArrow;
             pbCard1.Name = "bowAndArrow";
             pbCard1.Size = new Size(width, height);
@@ -303,7 +310,7 @@ namespace XAATArcade
             pbCard20.Name = "star";
             pbCard20.Size = new Size(width, height);
             frontList.Add(pbCard20);
-
+            //adds the different images to the list and randomizes them with the rand
             List<int> indexList = new List<int>();
             while (indexList.Count < 20)
             {
@@ -321,7 +328,7 @@ namespace XAATArcade
             }
 
         }
-
+        //Timer focus method if form is unfocused
         private void OnTimeEvent(object sender, System.Timers.ElapsedEventArgs e)
         {
             form.Invoke(new Action(() =>
@@ -361,7 +368,7 @@ namespace XAATArcade
                 }));
             }
         }
-
+        //Game over method if the time == 0
         void GameOver()
         {
             lblGameOver.BringToFront();
@@ -372,7 +379,7 @@ namespace XAATArcade
                 b.Enabled = false;
             }
         }
-
+        //Method for when a card is selected, it checks the cards and makes the image visiable
         void CardSelect(object sender, EventArgs e)
         {
             btnMemoryStart.Focus();
@@ -396,7 +403,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //
         public async Task CardCheck()
         {
             await Task.Delay(250);
@@ -415,7 +422,7 @@ namespace XAATArcade
                     }
                 }
             }
-
+            //if the list of match is > 0 remove and dispose from the matchlist
             if (matchList.Count > 0)
             {
                 if (matchList[0].GetChildAtPoint(pt).Name == matchList[1].GetChildAtPoint(pt).Name)
@@ -433,6 +440,7 @@ namespace XAATArcade
                     matchList[0].Dispose();
                     matchList.Clear();
                     lblPairsLeft.Text = (frontList.Count / 2).ToString();
+                    //if there is no more cards timer stop
                     if (gridList.Count == 0)
                     {
                         t.Stop();
@@ -447,7 +455,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //Clears all of the lists and dispose the timer
         public void ClearMemory()
         {
             frontList.Clear();
@@ -456,7 +464,7 @@ namespace XAATArcade
             matchList.Clear();
             matchBackList.Clear();
             t.Dispose();
-
+            //Dispose of the form controls
             for (int i = form.Controls.Count - 1; i >= 0; i--)
             {
                 if (form.Controls[i].Name != "Config Button")
@@ -468,7 +476,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //makes the back button that stops timer and goes to title page
         private void BackButton(object sender, EventArgs e)
         {
             t.Stop();

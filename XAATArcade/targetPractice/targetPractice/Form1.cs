@@ -13,7 +13,9 @@ using System.Drawing.Text;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Reflection;
-
+/// <summary>
+/// Form for the target pratice
+/// </summary>
 namespace targetPractice
 {
     public partial class Form1 : Form
@@ -22,6 +24,7 @@ namespace targetPractice
         {
             InitializeComponent();
             this.loadFont();
+            //streaming the different sounds
             hitplayer.Stream = Properties.Resources.NFF_glassy_tap_02;
             missplayer.Stream = Properties.Resources.NFF_clog_up;
             hitplayer.Load();

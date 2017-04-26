@@ -13,12 +13,15 @@ using System.Runtime.InteropServices;
 using targetPractice;
 using System.Media;
 using System.IO;
-
+/// <summary>
+/// Main Form for the project, the project menu.
+/// </summary>
 
 namespace XAATArcade
 {
     public partial class XAATArcade : Form
     {
+        //Setup of the form
         PictureBox pbTitle = new PictureBox();
         Button btnConfig = new Button();
         Button btnSequence = new Button();
@@ -50,12 +53,13 @@ namespace XAATArcade
         // timer off timmer on
         // interface for testing
         // method that adds sound to all buttons
+        // add the csv file
 
         public XAATArcade()
         {
             InitializeComponent();
         }
-
+        //on load form size==ClientSize and creates page, and sets up the back color and sound
         private void XAATArcade_Load(object sender, EventArgs e)
         {
             formSize = ClientSize;
@@ -67,7 +71,7 @@ namespace XAATArcade
             (Player.settings as WMPLib.IWMPSettings).setMode("loop", true);
             PlayBackgroundSound();
         }
-
+        //does what the method says
         private void CreateTitlePage()
         {
             pbTitle.Location = new Point((((this.Width / 2) /2) /2) + 10, 10);
@@ -106,7 +110,7 @@ namespace XAATArcade
             btnReflex.FlatStyle = FlatStyle.Flat;
             this.Controls.Add(btnReflex);
         }
-
+        //Creates config button dynamicly
         private void CreateConfig()
         {
             btnConfig.Location = new Point(formSize.Width - 51, formSize.Height - 51);
@@ -126,6 +130,7 @@ namespace XAATArcade
             pnlConfig.Visible = false;
             Controls.Add(pnlConfig);
 
+            //closes the config menu
             btnClose.Location = new Point(pnlConfig.Width - 52, pnlConfig.Height - 52);
             btnClose.Size = new Size(50, 50);
             btnClose.Text = "Close";
@@ -134,6 +139,7 @@ namespace XAATArcade
             btnClose.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlConfig.Controls.Add(btnClose);
 
+            //Changes Background color
             btnChangeBackgroundColor.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 10);
             btnChangeBackgroundColor.Size = new Size(50, 50);
             btnChangeBackgroundColor.Text = "Change Background Color";
@@ -148,6 +154,7 @@ namespace XAATArcade
             pnlButtonSound.BackColor = Color.Yellow;
             pnlConfig.Controls.Add(pnlButtonSound);
 
+            //Allows the button sound on
             rdBtnButtonSoundOn.Location = new Point(5, 5);
             rdBtnButtonSoundOn.Click += (s, z) => { TurnButtonSoundOn(s, z); };
             rdBtnButtonSoundOn.Width = 200;
@@ -158,6 +165,7 @@ namespace XAATArcade
             rdBtnButtonSoundOn.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlButtonSound.Controls.Add(rdBtnButtonSoundOn);
 
+            //Allows the button sounds off
             rdBtnButtonSoundOff.Location = new Point(5, 30);
             rdBtnButtonSoundOff.Click += (s, z) => { TurnButtonSoundOff(s, z); };
             rdBtnButtonSoundOff.Width = 200;
@@ -173,6 +181,7 @@ namespace XAATArcade
             pnlBackgroundSound.BackColor = Color.AliceBlue;
             pnlConfig.Controls.Add(pnlBackgroundSound);
 
+            //allows sound to be turned off
             rdBtnBackgroundSoundOn.Location = new Point(5, 5);
             rdBtnBackgroundSoundOn.Click += (s, z) => { TurnBackgroundSoundOn(s, z); };
             rdBtnBackgroundSoundOn.Width = 200;
@@ -183,6 +192,7 @@ namespace XAATArcade
             rdBtnBackgroundSoundOn.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlBackgroundSound.Controls.Add(rdBtnBackgroundSoundOn);
 
+            //allows background sound off
             rdBtnBackgroundSoundOff.Location = new Point(5, 30);
             rdBtnBackgroundSoundOff.Click += (s, z) => { TurnBackgroundSoundOff(s, z); };
             rdBtnBackgroundSoundOff.Width = 200;
@@ -208,7 +218,7 @@ namespace XAATArcade
             this.Controls.Remove(btnMemory);
             this.Controls.Remove(btnReflex);
         }
-
+        //Memory setup
         #region Memory
         private void Memory(object sender, EventArgs e)
         {
@@ -231,7 +241,7 @@ namespace XAATArcade
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
         }
         #endregion
-
+        //Sequence setup
         #region Sequence
         private void Sequence(object sender, EventArgs e)
         {
@@ -254,7 +264,7 @@ namespace XAATArcade
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
         }
         #endregion
-
+        //Reflex setup
         #region Reflex
         private void Reflex(object sender, EventArgs e)
         {
@@ -276,7 +286,7 @@ namespace XAATArcade
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
         }
         #endregion
-
+        //Config setup
         #region Config
         public void OpenConfig(object sender, EventArgs e)
         {
@@ -326,7 +336,7 @@ namespace XAATArcade
             }
         }
         #endregion
-
+        //Used for sound
         #region Sound
         private void TurnButtonSoundOn(object sender, EventArgs e)
         {
@@ -378,7 +388,7 @@ namespace XAATArcade
             Player.controls.pause();
         }
         #endregion
-
+        //form close method
         private void XAATArcade_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (memoryPlayed == true)

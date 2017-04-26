@@ -49,3 +49,16 @@ C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPra
 C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.pdb
 C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.ResolveComReference.cache
 C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\Interop.WMPLib.dll
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\bin\Debug\XAATArcade.exe.config
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\Interop.WMPLib.dll
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.ResolveComReference.cache
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.exe
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.pdb
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\bin\Debug\XAATArcade.exe
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\bin\Debug\XAATArcade.pdb
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\bin\Debug\targetPractice.exe
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\bin\Debug\targetPractice.pdb
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csprojResolveAssemblyReference.cache
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.XAATArcade.resources
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.Properties.Resources.resources
+C:\Users\pfalc\Source\Repos\22393_Team12\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.GenerateResource.Cache

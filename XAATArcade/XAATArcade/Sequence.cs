@@ -7,11 +7,14 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
-
+/// <summary>
+/// Creates the sequence game after it is selected on the main menu
+/// </summary>
 namespace XAATArcade
 {
     class Sequence
     {
+        //Initial assembly for the items on the screen
         Button btnSequenceStart = new Button();
         Button btnBack = new Button();
         Panel pnlGrid = new Panel();
@@ -31,19 +34,20 @@ namespace XAATArcade
         private XAATArcade form;
         Font font;
         FontFamily ff;
-
+        //form setup
         public Sequence(XAATArcade parent, Size parentSize)
         {
             form = parent;
             formSize = parentSize;
             CreateSequenceStart();
         }
-
+        //imports font
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
-
+        
         private void CreateSequenceStart()
         {
+            //adds font
             byte[] fontArray = Properties.Resources._8_BITWONDER;
             int dataLength = Properties.Resources._8_BITWONDER.Length;
 
@@ -62,7 +66,7 @@ namespace XAATArcade
             Marshal.FreeCoTaskMem(ptrData);
 
             ff = pfc.Families[0];
-
+            //Adds back button to form
             btnBack = new Button();
             btnBack.Location = new Point((formSize.Width - formSize.Width) + 1, (formSize.Height - formSize.Height) + 1);
             btnBack.Size = new Size(50, 50);
@@ -72,7 +76,7 @@ namespace XAATArcade
             btnBack.Click += (s, z) => { BackButton(s, z); };
             btnBack.MouseDown += (s, z) => { form.PlaySound(s, z); };
             form.Controls.Add(btnBack);
-
+            //Adds start button to form
             btnSequenceStart = new Button();
             btnSequenceStart.Location = new Point(formSize.Width - 51, (formSize.Height - formSize.Height) + 1);
             btnSequenceStart.Size = new Size(50, 50);
@@ -82,7 +86,7 @@ namespace XAATArcade
             btnSequenceStart.Click += (s, z) => { SequenceStart(s, z); };
             btnSequenceStart.MouseDown += (s, z) => { form.PlaySound(s, z); };
             form.Controls.Add(btnSequenceStart);
-
+            //Score label
             lblScore = new Label();
             lblScore.Location = new Point(formSize.Width - 202, (formSize.Height - formSize.Height) + 20);
             lblScore.Size = new Size(150, 50);
@@ -92,7 +96,7 @@ namespace XAATArcade
             lblScore.TextAlign = ContentAlignment.MiddleCenter;
             lblScore.ForeColor = Color.White;
             form.Controls.Add(lblScore);
-
+            //label under the score label
             lblScoreText = new Label();
             lblScoreText.Location = new Point(formSize.Width - 374, (formSize.Height - formSize.Height) + 5);
             lblScoreText.Size = new Size(150, 50);
@@ -107,12 +111,14 @@ namespace XAATArcade
             {
                 for (int column = 0; column <= 2; column++)
                 {
+                    //adds color to the panels
+                    //makes sure that the color of the backcolor is different from the panels
                     randomColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
                     if (randomColor == form.BackColor)
                     {
                         randomColor = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
                     }
-
+                    
                     pnlGrid = new Panel();
                     pnlGrid.Location = new Point(x + (column * (100 + 5)), y + (row * (100 + 5)));
                     pnlGrid.Size = new Size(100, 100);
@@ -129,7 +135,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //starts the game
         private void SequenceStart(object sender, EventArgs e)
         {
             if (sequenceList.Count > 0)
@@ -140,7 +146,7 @@ namespace XAATArcade
             }
             StartSequence();
         }
-
+        //On hover method
         private void PanelHover(object sender, EventArgs e)
         {
             foreach (Panel p in gridList)
@@ -151,7 +157,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //off hover
         private void PanelLeave(object sender, EventArgs e)
         {
             foreach (Panel p in gridList)
@@ -162,7 +168,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //Starts the sequence
         private async Task StartSequence()
         {
             lblScore.Text = sequenceList.Count().ToString();
@@ -194,8 +200,8 @@ namespace XAATArcade
                 }
             }
         }
-
-        void SequenceSelect(object sender, EventArgs e)
+        //Adds the panel to a list of clicked panels in a sequence
+        public void SequenceSelect(object sender, EventArgs e)
         {
             Panel clickedSquare = (Panel)sender;
             clickedList.Add(clickedSquare);
@@ -205,7 +211,7 @@ namespace XAATArcade
                 CheckSequence();
             }
         }
-
+        // if sequence is wrong game over
         async Task CheckSequence()
         {
             for (int i = 0; i < clickedList.Count; i++)
@@ -229,7 +235,7 @@ namespace XAATArcade
                 await StartSequence();
             }
         }
-
+        //Clears Sequence
         private void ClearSequence()
         {
             sequenceList.Clear();
@@ -248,7 +254,7 @@ namespace XAATArcade
                 }
             }
         }
-
+        //Back button with all methods for it
         private void BackButton(object sender, EventArgs e)
         {
             ClearSequence();
