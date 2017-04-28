@@ -26,8 +26,8 @@ namespace XAATArcade
         Panel pnlGrid = new Panel();
         int width = 70;
         int height = 110;
-        int x = 55;
-        int y = 55;
+        int x = 61;
+        int y = 65;
         Point pt = new Point(0, 0);
         Label lblPairsLeft = new Label();
         Label lblTimer = new Label();
@@ -90,6 +90,7 @@ namespace XAATArcade
             btnBack.Click += (s, z) => { BackButton(s, z); };
             btnBack.MouseDown += (s, z) => { form.PlaySound(s, z); };
             btnBack.BackColor = Color.Blue;
+            btnBack.ForeColor = Color.White;
             form.Controls.Add(btnBack);
             btnBack.Font = font;
 
@@ -101,6 +102,7 @@ namespace XAATArcade
             btnMemoryStart.MouseDown += (s, z) => { form.PlaySound(s, z); };
             btnMemoryStart.BackColor = Color.Blue;
             btnMemoryStart.Font = font;
+            btnMemoryStart.ForeColor = Color.White;
             form.Controls.Add(btnMemoryStart);
 
             lblPairsLeftDesc = new Label();
@@ -359,7 +361,7 @@ namespace XAATArcade
                 }
             }));
             
-            if (m == 30)
+            if (m == 40)
             {
                 t.Stop();
                 form.Invoke(new Action(() =>

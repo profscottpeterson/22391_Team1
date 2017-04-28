@@ -123,7 +123,6 @@
             this.panel2.Size = new System.Drawing.Size(484, 293);
             this.panel2.TabIndex = 1;
             this.panel2.Visible = false;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // comboBox1
             // 
@@ -136,7 +135,7 @@
             "3",
             "4",
             "5"});
-            this.comboBox1.Location = new System.Drawing.Point(324, 213);
+            this.comboBox1.Location = new System.Drawing.Point(324, 232);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(131, 21);
             this.comboBox1.TabIndex = 17;
@@ -146,11 +145,13 @@
             this.lblBallSpawnSpeed.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBallSpawnSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblBallSpawnSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBallSpawnSpeed.Location = new System.Drawing.Point(86, 210);
+            this.lblBallSpawnSpeed.ForeColor = System.Drawing.Color.White;
+            this.lblBallSpawnSpeed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBallSpawnSpeed.Location = new System.Drawing.Point(51, 227);
             this.lblBallSpawnSpeed.Name = "lblBallSpawnSpeed";
-            this.lblBallSpawnSpeed.Size = new System.Drawing.Size(239, 25);
-            this.lblBallSpawnSpeed.TabIndex = 16;
-            this.lblBallSpawnSpeed.Text = "Ball Spawn Speed:";
+            this.lblBallSpawnSpeed.Size = new System.Drawing.Size(270, 25);
+            this.lblBallSpawnSpeed.TabIndex = 18;
+            this.lblBallSpawnSpeed.Text = "Spawn Speed:";
             this.lblBallSpawnSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
@@ -160,7 +161,7 @@
             this.label1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Location = new System.Drawing.Point(6, 4);
+            this.label1.Location = new System.Drawing.Point(7, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 23);
             this.label1.TabIndex = 15;
@@ -177,7 +178,7 @@
             this.comboBox6.Items.AddRange(new object[] {
             "YES",
             "NO"});
-            this.comboBox6.Location = new System.Drawing.Point(324, 176);
+            this.comboBox6.Location = new System.Drawing.Point(324, 195);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(131, 21);
             this.comboBox6.TabIndex = 13;
@@ -191,7 +192,7 @@
             this.comboBox5.Items.AddRange(new object[] {
             "Cross",
             "Default"});
-            this.comboBox5.Location = new System.Drawing.Point(324, 139);
+            this.comboBox5.Location = new System.Drawing.Point(324, 158);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(131, 21);
             this.comboBox5.TabIndex = 12;
@@ -202,9 +203,11 @@
             this.lblBallMovement.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBallMovement.BackColor = System.Drawing.Color.Transparent;
             this.lblBallMovement.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBallMovement.Location = new System.Drawing.Point(-9, 173);
+            this.lblBallMovement.ForeColor = System.Drawing.Color.White;
+            this.lblBallMovement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBallMovement.Location = new System.Drawing.Point(-27, 191);
             this.lblBallMovement.Name = "lblBallMovement";
-            this.lblBallMovement.Size = new System.Drawing.Size(334, 25);
+            this.lblBallMovement.Size = new System.Drawing.Size(348, 25);
             this.lblBallMovement.TabIndex = 11;
             this.lblBallMovement.Text = "Ball Movement:";
             this.lblBallMovement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -219,7 +222,7 @@
             "2",
             "3",
             "4"});
-            this.comboBox3.Location = new System.Drawing.Point(324, 102);
+            this.comboBox3.Location = new System.Drawing.Point(324, 121);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(131, 21);
             this.comboBox3.TabIndex = 9;
@@ -237,7 +240,7 @@
             "Yellow",
             "Orange",
             "Purple"});
-            this.cbBallColor.Location = new System.Drawing.Point(324, 65);
+            this.cbBallColor.Location = new System.Drawing.Point(324, 84);
             this.cbBallColor.Name = "cbBallColor";
             this.cbBallColor.Size = new System.Drawing.Size(131, 21);
             this.cbBallColor.TabIndex = 8;
@@ -254,7 +257,7 @@
             "60",
             "50",
             "40"});
-            this.cbBallSize.Location = new System.Drawing.Point(324, 28);
+            this.cbBallSize.Location = new System.Drawing.Point(324, 47);
             this.cbBallSize.Name = "cbBallSize";
             this.cbBallSize.Size = new System.Drawing.Size(131, 21);
             this.cbBallSize.TabIndex = 7;
@@ -274,9 +277,11 @@
             this.lblCursorType.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblCursorType.BackColor = System.Drawing.Color.Transparent;
             this.lblCursorType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCursorType.Location = new System.Drawing.Point(21, 136);
+            this.lblCursorType.ForeColor = System.Drawing.Color.White;
+            this.lblCursorType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCursorType.Location = new System.Drawing.Point(66, 154);
             this.lblCursorType.Name = "lblCursorType";
-            this.lblCursorType.Size = new System.Drawing.Size(304, 25);
+            this.lblCursorType.Size = new System.Drawing.Size(255, 25);
             this.lblCursorType.TabIndex = 5;
             this.lblCursorType.Text = "Cursor Type:";
             this.lblCursorType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -286,9 +291,11 @@
             this.lblBallSpeed.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBallSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblBallSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBallSpeed.Location = new System.Drawing.Point(71, 99);
+            this.lblBallSpeed.ForeColor = System.Drawing.Color.White;
+            this.lblBallSpeed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBallSpeed.Location = new System.Drawing.Point(122, 117);
             this.lblBallSpeed.Name = "lblBallSpeed";
-            this.lblBallSpeed.Size = new System.Drawing.Size(254, 25);
+            this.lblBallSpeed.Size = new System.Drawing.Size(199, 25);
             this.lblBallSpeed.TabIndex = 2;
             this.lblBallSpeed.Text = "Speed:";
             this.lblBallSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,9 +305,11 @@
             this.lblBallSize.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBallSize.BackColor = System.Drawing.Color.Transparent;
             this.lblBallSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBallSize.Location = new System.Drawing.Point(55, 25);
+            this.lblBallSize.ForeColor = System.Drawing.Color.White;
+            this.lblBallSize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBallSize.Location = new System.Drawing.Point(100, 43);
             this.lblBallSize.Name = "lblBallSize";
-            this.lblBallSize.Size = new System.Drawing.Size(270, 25);
+            this.lblBallSize.Size = new System.Drawing.Size(221, 25);
             this.lblBallSize.TabIndex = 1;
             this.lblBallSize.Text = "Ball Size:";
             this.lblBallSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -310,9 +319,11 @@
             this.lblBallColor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblBallColor.BackColor = System.Drawing.Color.Transparent;
             this.lblBallColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBallColor.Location = new System.Drawing.Point(40, 62);
+            this.lblBallColor.ForeColor = System.Drawing.Color.White;
+            this.lblBallColor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBallColor.Location = new System.Drawing.Point(91, 80);
             this.lblBallColor.Name = "lblBallColor";
-            this.lblBallColor.Size = new System.Drawing.Size(285, 25);
+            this.lblBallColor.Size = new System.Drawing.Size(230, 25);
             this.lblBallColor.TabIndex = 0;
             this.lblBallColor.Text = "Ball Color:";
             this.lblBallColor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -457,9 +468,9 @@
         private System.Windows.Forms.Button label1;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label lblBallSpawnSpeed;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblBallSpawnSpeed;
     }
 }
 

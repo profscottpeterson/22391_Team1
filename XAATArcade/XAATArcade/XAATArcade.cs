@@ -47,6 +47,7 @@ namespace XAATArcade
         Form1 reflex;
         public Font font;
         WMPLib.WindowsMediaPlayer Player = new WMPLib.WindowsMediaPlayer();
+        ColorDialog colorDialog1 = new ColorDialog();
 
         // make backbutton availibale for all games
         // create config screen
@@ -84,30 +85,42 @@ namespace XAATArcade
             btnSequence.Size = new Size(350, 80);
             btnSequence.BackgroundImage = Properties.Resources.sequence;
             btnSequence.Click += (s, z) => { Sequence(s, z); };
-            btnSequence.MouseHover += (s, z) => { SequenceHover(s, z); };
+            btnSequence.MouseEnter += (s, z) => { SequenceHover(s, z); };
             btnSequence.MouseLeave += (s, z) => { SequenceMouseLeave(s, z); };
             btnSequence.MouseDown += (s, z) => { PlaySound(s, z); };
             btnSequence.FlatStyle = FlatStyle.Flat;
+            btnSequence.FlatAppearance.BorderSize = 0;
+            btnSequence.BackgroundImageLayout = ImageLayout.Center;
+            btnSequence.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnSequence.FlatAppearance.MouseDownBackColor = Color.Transparent;
             this.Controls.Add(btnSequence);
 
             btnMemory.Location = new Point(this.Width - this.Width + 30, 370);
             btnMemory.Size = new Size(350, 80);
             btnMemory.BackgroundImage = Properties.Resources.memory;
             btnMemory.Click += (s, z) => { Memory(s, z); };
-            btnMemory.MouseHover += (s, z) => { MemoryHover(s, z); };
+            btnMemory.MouseEnter += (s, z) => { MemoryHover(s, z); };
             btnMemory.MouseLeave += (s, z) => { MemoryMouseLeave(s, z); };
             btnMemory.MouseDown += (s, z) => { PlaySound(s, z); };
             btnMemory.FlatStyle = FlatStyle.Flat;
+            btnMemory.FlatAppearance.BorderSize = 0;
+            btnMemory.BackgroundImageLayout = ImageLayout.Center;
+            btnMemory.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnMemory.FlatAppearance.MouseDownBackColor = Color.Transparent;
             this.Controls.Add(btnMemory);
 
             btnReflex.Location = new Point(this.Width - this.Width + 30, 430);
             btnReflex.Size = new Size(350, 80);
             btnReflex.BackgroundImage = Properties.Resources.reflex;
             btnReflex.Click += (s, z) => { Reflex(s, z); };
-            btnReflex.MouseHover += (s, z) => { ReflexHover(s, z); };
+            btnReflex.MouseEnter += (s, z) => { ReflexHover(s, z); };
             btnReflex.MouseLeave += (s, z) => { ReflexMouseLeave(s, z); };
             btnReflex.MouseDown += (s, z) => { PlaySound(s, z); };
             btnReflex.FlatStyle = FlatStyle.Flat;
+            btnReflex.FlatAppearance.BorderSize = 0;
+            btnReflex.BackgroundImageLayout = ImageLayout.Center;
+            btnReflex.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnReflex.FlatAppearance.MouseDownBackColor = Color.Transparent;
             this.Controls.Add(btnReflex);
         }
         //Creates config button dynamicly
@@ -231,14 +244,14 @@ namespace XAATArcade
         {
             btnMemory.BackgroundImage = Properties.Resources.memoryHover;
             pbTitle.Image = Properties.Resources.matchinggame;
-            pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
+            btnMemory.Size += new Size(9, 9);
         }
 
         private void MemoryMouseLeave(object sender, EventArgs e)
         {
             btnMemory.BackgroundImage = Properties.Resources.memory;
             pbTitle.Image = Properties.Resources.xaatarcadetitle;
-            pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
+            btnMemory.Size -= new Size(9, 9);
         }
         #endregion
         //Sequence setup
@@ -255,6 +268,7 @@ namespace XAATArcade
             btnSequence.BackgroundImage = Properties.Resources.sequencehover;
             pbTitle.Image = Properties.Resources.sequencegame;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
+            btnSequence.Size += new Size(9, 9);
         }
 
         private void SequenceMouseLeave(object sender, EventArgs e)
@@ -262,6 +276,7 @@ namespace XAATArcade
             btnSequence.BackgroundImage = Properties.Resources.sequence;
             pbTitle.Image = Properties.Resources.xaatarcadetitle;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
+            btnSequence.Size -= new Size(9, 9);
         }
         #endregion
         //Reflex setup
@@ -277,6 +292,7 @@ namespace XAATArcade
             btnReflex.BackgroundImage = Properties.Resources.reflexhover;
             pbTitle.Image = Properties.Resources.reflexgame;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
+            btnReflex.Size += new Size(9, 9);
         }
 
         private void ReflexMouseLeave(object sender, EventArgs e)
@@ -284,6 +300,7 @@ namespace XAATArcade
             btnReflex.BackgroundImage = Properties.Resources.reflex;
             pbTitle.Image = Properties.Resources.xaatarcadetitle;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
+            btnReflex.Size -= new Size(9, 9);
         }
         #endregion
         //Config setup
@@ -310,7 +327,6 @@ namespace XAATArcade
 
         public void ChangeBackColor(object sender, EventArgs e)
         {
-            ColorDialog colorDialog1 = new ColorDialog();
             DialogResult colorResult = colorDialog1.ShowDialog();
             if (colorResult == DialogResult.OK)
             {

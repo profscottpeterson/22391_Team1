@@ -80,7 +80,9 @@ namespace targetPractice
             int vy = rand.Next(1, 8);
             if (rand.Next(0, 2) == 0) vx = -vx;
             if (rand.Next(0, 2) == 0) vy = -vy;
+
             ballVelocity.Add(new Point(vx, vy));
+
             ballIsGrowing.Add(true);
         }
 
@@ -225,11 +227,6 @@ namespace targetPractice
 
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             //ballList.Clear();
@@ -338,6 +335,7 @@ namespace targetPractice
             lblBallSize.Font = new Font(ff, 16, FontStyle.Regular);
             lblCursorType.Font = new Font(ff, 16, FontStyle.Regular);
             lblBallMovement.Font = new Font(ff, 16, FontStyle.Regular);
+            lblBallSpawnSpeed.Font = new Font(ff, 16, FontStyle.Regular);
             btnStart.Font = new Font(ff, 16, FontStyle.Regular);
         }
 

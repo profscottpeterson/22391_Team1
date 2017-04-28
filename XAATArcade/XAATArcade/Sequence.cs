@@ -73,6 +73,7 @@ namespace XAATArcade
             btnBack.Font = new Font(ff, 5f, FontStyle.Regular);
             btnBack.Text = "Back";
             btnBack.BackColor = Color.Blue;
+            btnBack.ForeColor = Color.White;
             btnBack.Click += (s, z) => { BackButton(s, z); };
             btnBack.MouseDown += (s, z) => { form.PlaySound(s, z); };
             form.Controls.Add(btnBack);
@@ -83,6 +84,7 @@ namespace XAATArcade
             btnSequenceStart.Font = new Font(ff, 5f, FontStyle.Regular);
             btnSequenceStart.Text = "Start";
             btnSequenceStart.BackColor = Color.Blue;
+            btnSequenceStart.ForeColor = Color.White;
             btnSequenceStart.Click += (s, z) => { SequenceStart(s, z); };
             btnSequenceStart.MouseDown += (s, z) => { form.PlaySound(s, z); };
             form.Controls.Add(btnSequenceStart);
@@ -127,7 +129,7 @@ namespace XAATArcade
                     pnlGrid.BackgroundImage = Properties.Resources.sequenceBoarder;
                     pnlGrid.Click += (s, z) => { SequenceSelect(s, z); };
                     pnlGrid.MouseDoubleClick += (s, z) => { SequenceSelect(s, z); };
-                    pnlGrid.MouseHover += (s, z) => { PanelHover(s, z); };
+                    pnlGrid.MouseEnter += (s, z) => { PanelHover(s, z); };
                     pnlGrid.MouseLeave += (s, z) => { PanelLeave(s, z); };
                     pnlGrid.MouseDown += (s, z) => { form.PlaySound(s, z); };
                     gridList.Add(pnlGrid);
