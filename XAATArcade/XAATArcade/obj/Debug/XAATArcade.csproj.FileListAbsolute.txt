@@ -88,3 +88,16 @@ C:\Users\Xavier\Desktop\v900\22393_Team1-master\XAATArcade\XAATArcade\obj\Debug\
 C:\Users\Xavier\Desktop\v900\22393_Team1-master\XAATArcade\XAATArcade\obj\Debug\XAATArcade.XAATArcade.resources
 C:\Users\Xavier\Desktop\v900\22393_Team1-master\XAATArcade\XAATArcade\obj\Debug\XAATArcade.Properties.Resources.resources
 C:\Users\Xavier\Desktop\v900\22393_Team1-master\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.GenerateResource.Cache
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\XAATArcade.exe.config
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\Interop.WMPLib.dll
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.ResolveComReference.cache
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.exe
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.pdb
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\XAATArcade.exe
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\XAATArcade.pdb
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.exe
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\bin\Debug\targetPractice.pdb
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csprojResolveAssemblyReference.cache
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.XAATArcade.resources
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.Properties.Resources.resources
+C:\Users\Xavier\Source\Repos\22393_Team1\XAATArcade\XAATArcade\obj\Debug\XAATArcade.csproj.GenerateResource.Cache
