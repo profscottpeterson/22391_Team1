@@ -64,12 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Memory.cs" />
-    <Compile Include="MemoryTest.cs" />
     <Compile Include="MenuButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sequence.cs" />
-    <Compile Include="SequenceTest.cs" />
     <Compile Include="XAATArcade.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,7 +76,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XAATArcadeTest.cs" />
     <EmbeddedResource Include="XAATArcade.resx">
       <DependentUpon>XAATArcade.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +180,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\Sounds\backgroundMusic.wav" />
     <Content Include="bin\Debug\Sounds\click.wav" />
+    <None Include="Resources\Untitled-2.png" />
     <None Include="Resources\cog.png" />
     <None Include="Resources\cog.bmp" />
     <None Include="Resources\reflexgame.gif" />

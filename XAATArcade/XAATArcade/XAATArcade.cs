@@ -39,16 +39,14 @@ namespace XAATArcade
         bool buttonSoundOn = true;
         bool backgroundSoundOn = true;
         Panel pnlConfig = new Panel();
-        GroupBox grpBoxButtonSound = new GroupBox();
-        GroupBox grpBoxBackgroundSound = new GroupBox();
+        Panel pnlButtonSound = new Panel();
+        Panel pnlBackgroundSound = new Panel();
         Size formSize;
         Memory memory;
         Sequence sequence;
         Form1 reflex;
         public Font font;
         WMPLib.WindowsMediaPlayer Player = new WMPLib.WindowsMediaPlayer();
-
-        System.Windows.Media.MediaPlayer a = new System.Windows.Media.MediaPlayer();
         ColorDialog colorDialog1 = new ColorDialog();
 
         // make backbutton availibale for all games
@@ -78,8 +76,8 @@ namespace XAATArcade
         private void CreateTitlePage()
         {
             pbTitle.Location = new Point((((this.Width / 2) /2) /2) + 10, 10);
-            pbTitle.Size = new Size(350, 300);
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Size = new Size(370, 320);
+            pbTitle.Image = Properties.Resources.Untitled_2;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
             this.Controls.Add(pbTitle);
 
@@ -155,69 +153,67 @@ namespace XAATArcade
             pnlConfig.Controls.Add(btnClose);
 
             //Changes Background color
-            btnChangeBackgroundColor.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 20);
-            btnChangeBackgroundColor.Size = new Size(200, 25);
+            btnChangeBackgroundColor.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 10);
+            btnChangeBackgroundColor.Size = new Size(50, 50);
             btnChangeBackgroundColor.Text = "Change Background Color";
             btnChangeBackgroundColor.TextAlign = ContentAlignment.MiddleCenter;
             btnChangeBackgroundColor.Click += (s, z) => { ChangeBackColor(s, z); };
             btnChangeBackgroundColor.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlConfig.Controls.Add(btnChangeBackgroundColor);
 
-            grpBoxButtonSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 55);
-            grpBoxButtonSound.Size = new Size(115, 70);
-            grpBoxButtonSound.Text = "Button Sound";
-            grpBoxButtonSound.Name = "Button Sound Group Box";
-            grpBoxButtonSound.BackColor = Color.Yellow;
-            pnlConfig.Controls.Add(grpBoxButtonSound);
+            pnlButtonSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 70);
+            pnlButtonSound.Size = new Size(200, 60);
+            pnlButtonSound.Name = "Button Sound Panel";
+            pnlButtonSound.BackColor = Color.Yellow;
+            pnlConfig.Controls.Add(pnlButtonSound);
 
             //Allows the button sound on
-            rdBtnButtonSoundOn.Location = new Point(10, 15);
+            rdBtnButtonSoundOn.Location = new Point(5, 5);
             rdBtnButtonSoundOn.Click += (s, z) => { TurnButtonSoundOn(s, z); };
-            rdBtnButtonSoundOn.Width = 40;
-            rdBtnButtonSoundOn.Text = "On";
+            rdBtnButtonSoundOn.Width = 200;
+            rdBtnButtonSoundOn.Text = "Button Sound On";
             rdBtnButtonSoundOn.TextAlign = ContentAlignment.MiddleLeft;
             rdBtnButtonSoundOn.CheckAlign = ContentAlignment.MiddleLeft;
             rdBtnButtonSoundOn.Checked = true;
             rdBtnButtonSoundOn.MouseDown += (s, z) => { PlaySound(s, z); };
-            grpBoxButtonSound.Controls.Add(rdBtnButtonSoundOn);
+            pnlButtonSound.Controls.Add(rdBtnButtonSoundOn);
 
             //Allows the button sounds off
-            rdBtnButtonSoundOff.Location = new Point(10, 40);
+            rdBtnButtonSoundOff.Location = new Point(5, 30);
             rdBtnButtonSoundOff.Click += (s, z) => { TurnButtonSoundOff(s, z); };
-            rdBtnButtonSoundOff.Width = 40;
-            rdBtnButtonSoundOff.Text = "Off";
+            rdBtnButtonSoundOff.Width = 200;
+            rdBtnButtonSoundOff.Text = "Button Sound Off";
             rdBtnButtonSoundOff.TextAlign = ContentAlignment.MiddleLeft;
             rdBtnButtonSoundOff.CheckAlign = ContentAlignment.MiddleLeft;
             rdBtnButtonSoundOff.MouseDown += (s, z) => { PlaySound(s, z); };
-            grpBoxButtonSound.Controls.Add(rdBtnButtonSoundOff);
+            pnlButtonSound.Controls.Add(rdBtnButtonSoundOff);
 
-            grpBoxBackgroundSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 140);
-            grpBoxBackgroundSound.Size = new Size(115, 70);
-            grpBoxBackgroundSound.Text = "Background Sound";
-            grpBoxBackgroundSound.Name = "Background Sound Group Box";
-            grpBoxBackgroundSound.BackColor = Color.AliceBlue;
-            pnlConfig.Controls.Add(grpBoxBackgroundSound);
+            pnlBackgroundSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 130);
+            pnlBackgroundSound.Size = new Size(200, 60);
+            pnlBackgroundSound.Name = "Background Sound Panel";
+            pnlBackgroundSound.BackColor = Color.AliceBlue;
+            pnlConfig.Controls.Add(pnlBackgroundSound);
 
             //allows sound to be turned off
-            rdBtnBackgroundSoundOn.Location = new Point(10, 15);
+            rdBtnBackgroundSoundOn.Location = new Point(5, 5);
             rdBtnBackgroundSoundOn.Click += (s, z) => { TurnBackgroundSoundOn(s, z); };
-            rdBtnBackgroundSoundOn.Width = 40;
-            rdBtnBackgroundSoundOn.Text = "On";
+            rdBtnBackgroundSoundOn.Width = 200;
+            rdBtnBackgroundSoundOn.Text = "Background Sound On";
             rdBtnBackgroundSoundOn.TextAlign = ContentAlignment.MiddleLeft;
             rdBtnBackgroundSoundOn.CheckAlign = ContentAlignment.MiddleLeft;
             rdBtnBackgroundSoundOn.Checked = true;
             rdBtnBackgroundSoundOn.MouseDown += (s, z) => { PlaySound(s, z); };
-            grpBoxBackgroundSound.Controls.Add(rdBtnBackgroundSoundOn);
+            pnlBackgroundSound.Controls.Add(rdBtnBackgroundSoundOn);
 
             //allows background sound off
-            rdBtnBackgroundSoundOff.Location = new Point(10, 40);
+            rdBtnBackgroundSoundOff.Location = new Point(5, 30);
             rdBtnBackgroundSoundOff.Click += (s, z) => { TurnBackgroundSoundOff(s, z); };
-            rdBtnBackgroundSoundOff.Width = 40;
-            rdBtnBackgroundSoundOff.Text = "Off";
+            rdBtnBackgroundSoundOff.Width = 200;
+            rdBtnBackgroundSoundOff.Text = "Background Sound Off";
             rdBtnBackgroundSoundOff.TextAlign = ContentAlignment.MiddleLeft;
             rdBtnBackgroundSoundOff.CheckAlign = ContentAlignment.MiddleLeft;
             rdBtnBackgroundSoundOff.MouseDown += (s, z) => { PlaySound(s, z); };
-            grpBoxBackgroundSound.Controls.Add(rdBtnBackgroundSoundOff);
+            pnlBackgroundSound.Controls.Add(rdBtnBackgroundSoundOff);
         }
 
         public void AddTitlePage()
@@ -254,7 +250,7 @@ namespace XAATArcade
         private void MemoryMouseLeave(object sender, EventArgs e)
         {
             btnMemory.BackgroundImage = Properties.Resources.memory;
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Image = Properties.Resources.Untitled_2;
             btnMemory.Size -= new Size(9, 9);
         }
         #endregion
@@ -278,7 +274,7 @@ namespace XAATArcade
         private void SequenceMouseLeave(object sender, EventArgs e)
         {
             btnSequence.BackgroundImage = Properties.Resources.sequence;
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Image = Properties.Resources.Untitled_2;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
             btnSequence.Size -= new Size(9, 9);
         }
@@ -302,7 +298,7 @@ namespace XAATArcade
         private void ReflexMouseLeave(object sender, EventArgs e)
         {
             btnReflex.BackgroundImage = Properties.Resources.reflex;
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Image = Properties.Resources.Untitled_2;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
             btnReflex.Size -= new Size(9, 9);
         }
@@ -372,8 +368,11 @@ namespace XAATArcade
         {
             if (buttonSoundOn == true)
             {
-                a.Open(new System.Uri(System.IO.Directory.GetCurrentDirectory() + "/Sounds/click.wav"));
-                a.Play();
+                new System.Threading.Thread(() => {
+                    var a = new System.Windows.Media.MediaPlayer();
+                    a.Open(new System.Uri(System.IO.Directory.GetCurrentDirectory() + "/Sounds/click.wav"));
+                    a.Play();
+                }).Start();
             }
         }
 
