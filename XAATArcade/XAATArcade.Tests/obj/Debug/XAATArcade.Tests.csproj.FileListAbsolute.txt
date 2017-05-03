@@ -1,0 +1,9 @@
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\obj\Debug\XAATArcade.Tests.csprojResolveAssemblyReference.cache
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\bin\Debug\XAATArcade.Tests.dll
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\bin\Debug\XAATArcade.Tests.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\bin\Debug\targetPractice.exe
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\bin\Debug\XAATArcade.exe
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\bin\Debug\targetPractice.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\bin\Debug\XAATArcade.pdb
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\obj\Debug\XAATArcade.Tests.dll
+C:\Users\User\Source\Repos\22393_Team1\XAATArcade\XAATArcade.Tests\obj\Debug\XAATArcade.Tests.pdb
