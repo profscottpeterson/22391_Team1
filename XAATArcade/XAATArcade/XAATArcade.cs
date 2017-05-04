@@ -78,8 +78,8 @@ namespace XAATArcade
         private void CreateTitlePage()
         {
             pbTitle.Location = new Point((((this.Width / 2) /2) /2) + 10, 10);
-            pbTitle.Size = new Size(350, 300);
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Size = new Size(370, 320);
+            pbTitle.Image = Properties.Resources.Untitled_2;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
             this.Controls.Add(pbTitle);
 
@@ -254,7 +254,7 @@ namespace XAATArcade
         private void MemoryMouseLeave(object sender, EventArgs e)
         {
             btnMemory.BackgroundImage = Properties.Resources.memory;
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Image = Properties.Resources.Untitled_2;
             btnMemory.Size -= new Size(9, 9);
         }
         #endregion
@@ -278,7 +278,7 @@ namespace XAATArcade
         private void SequenceMouseLeave(object sender, EventArgs e)
         {
             btnSequence.BackgroundImage = Properties.Resources.sequence;
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Image = Properties.Resources.Untitled_2;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
             btnSequence.Size -= new Size(9, 9);
         }
@@ -287,7 +287,7 @@ namespace XAATArcade
         #region Reflex
         private void Reflex(object sender, EventArgs e)
         {
-            reflex = new Form1();
+            reflex = new targetPractice.Form1();
             reflex.ShowDialog();
         }
 
@@ -302,7 +302,7 @@ namespace XAATArcade
         private void ReflexMouseLeave(object sender, EventArgs e)
         {
             btnReflex.BackgroundImage = Properties.Resources.reflex;
-            pbTitle.Image = Properties.Resources.xaatarcadetitle;
+            pbTitle.Image = Properties.Resources.Untitled_2;
             pbTitle.SizeMode = PictureBoxSizeMode.CenterImage;
             btnReflex.Size -= new Size(9, 9);
         }

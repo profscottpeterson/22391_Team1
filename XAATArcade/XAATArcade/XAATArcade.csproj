@@ -183,6 +183,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\Sounds\backgroundMusic.wav" />
     <Content Include="bin\Debug\Sounds\click.wav" />
+    <None Include="Resources\Untitled-2.png" />
     <None Include="Resources\cog.png" />
     <None Include="Resources\cog.bmp" />
     <None Include="Resources\reflexgame.gif" />
