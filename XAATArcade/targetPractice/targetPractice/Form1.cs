@@ -229,7 +229,7 @@ namespace targetPractice
                 {
                     ballList.Remove(ballList[ball_num]);
                     ballVelocity.Remove(ballVelocity[ball_num]);
-                    if(cbDisableMovement.Checked == true)
+                    if(cbBallSize.SelectedIndex > -1)
                     {
 
                     }
@@ -338,10 +338,10 @@ namespace targetPractice
         }
 
         private void MakeBall(int Speed) {
-            //size of target
+            //size of target variable
             int width;
 
-            //velocity of target
+            //velocity of target variable
             int vx, vy;
 
             if (cbBallSize.SelectedIndex != -1)
@@ -350,8 +350,8 @@ namespace targetPractice
                 {
                     int x, y;
                     Rectangle target;
-                    x = rand.Next(10, (formSize.Width - 60));
-                    y = rand.Next(10, (formSize.Height - pnlHUD.Height) - 40);
+                    x = rand.Next(10, (formSize.Width - 100));
+                    y = rand.Next(10, (formSize.Height - pnlHUD.Height) - 100);
                      
                     foreach (var rect in ballList)
                     {
@@ -360,8 +360,8 @@ namespace targetPractice
                         target = new Rectangle(x, y, width, width);
                         
                         if (rect.Contains(target)) {
-                            x = rand.Next(10, (formSize.Width - 60));
-                            y = rand.Next(10, (formSize.Height - pnlHUD.Height) - 40);
+                            x = rand.Next(10, (formSize.Width - 100));
+                            y = rand.Next(10, (formSize.Height - pnlHUD.Height) - 100);
                         }
 
                         foreach (var rectt in ballList)
@@ -370,8 +370,8 @@ namespace targetPractice
 
                             if (rectt.Contains(target))
                             {
-                                x = rand.Next(10, (formSize.Width - 60));
-                                y = rand.Next(10, (formSize.Height - pnlHUD.Height) - 40);
+                                x = rand.Next(10, (formSize.Width - 100));
+                                y = rand.Next(10, (formSize.Height - pnlHUD.Height) - 100);
                             }
                         }
 
@@ -386,8 +386,8 @@ namespace targetPractice
                     //if sized is picked and there is still movement in targets
                     width = BallSize[cbBallSize.SelectedIndex];
                     ballList.Add(new Rectangle(
-                        rand.Next(10, (formSize.Width - 60)),
-                        rand.Next(10, (formSize.Height - pnlHUD.Height) - 40),
+                        rand.Next(10, (formSize.Width - 100)),
+                        rand.Next(10, (formSize.Height - pnlHUD.Height) - 100),
                         width, width));
                 }
                 
