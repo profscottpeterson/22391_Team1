@@ -27,49 +27,49 @@ namespace XAATArcade.Tests
         public void XAATArcadeMemoryHover()
         {
             test.MemoryHover(true);
-            Assert.AreEqual("enter", test.memoryButtonStatus);
+            Assert.AreEqual("enter", test.memoryButtonStatus, "memoryButtonStatus");
         }
 
         [TestMethod]
         public void XAATArcadeMemoryLeave()
         {
             test.MemoryMouseLeave(true);
-            Assert.AreEqual("leave", test.memoryButtonStatus);
+            Assert.AreEqual("leave", test.memoryButtonStatus, "memoryButtonStatus");
         }
 
         [TestMethod]
         public void XAATArcadeSequenceHover()
         {
             test.SequenceHover(true);
-            Assert.AreEqual("enter", test.sequenceButtonStatus);
+            Assert.AreEqual("enter", test.sequenceButtonStatus, "sequenceButtonStatus");
         }
 
         [TestMethod]
         public void XAATArcadeSequenceLeave()
         {
             test.SequenceMouseLeave(true);
-            Assert.AreEqual("leave", test.sequenceButtonStatus);
+            Assert.AreEqual("leave", test.sequenceButtonStatus, "sequenceButtonStatus");
         }
 
         [TestMethod]
         public void XAATArcadeReflex()
         {
             test.Reflex(true);
-            Assert.AreEqual("clicked", test.reflexButtonStatus);
+            Assert.AreEqual("clicked", test.reflexButtonStatus, "reflexButtonStatus");
         }
 
         [TestMethod]
         public void XAATArcadeReflexHover()
         {
             test.ReflexHover(true);
-            Assert.AreEqual("enter", test.reflexButtonStatus);
+            Assert.AreEqual("enter", test.reflexButtonStatus, "reflexButtonStatus");
         }
 
         [TestMethod]
         public void XAATArcadeReflexLeave()
         {
             test.ReflexMouseLeave(true);
-            Assert.AreEqual("leave", test.reflexButtonStatus);
+            Assert.AreEqual("leave", test.reflexButtonStatus, "reflexButtonStatus");
         }
 
         [TestMethod]

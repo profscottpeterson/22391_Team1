@@ -1,197 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Timers;
 using System.Windows.Forms;
-using System.Drawing.Text;
-using System.Runtime.InteropServices;
 
 namespace XAATArcade
 {
     public class MemoryTest
     {
-            Button btnCardBacks = new Button();
-            Panel pnlGrid = new Panel();
-            int width = 70;
-            int height = 110;
-            int x = 61;
-            int y = 65;
-            Point pt = new Point(0, 0);
-            Label lblPairsLeft = new Label();
-            Label lblGameOver = new Label();
-            List<Control> frontList = new List<Control>();
-            List<Panel> gridList = new List<Panel>();
-            List<Button> backList = new List<Button>();
-            List<Panel> matchList = new List<Panel>();
-            List<Button> matchBackList = new List<Button>();
-            Random rand = new Random();
-            Label lblMatchesLeft = new Label();
-            private XAATArcadeTest form;
-            public void Memory(XAATArcadeTest parent, bool memoryButton)
-            {
-                form = parent;
-                CreateMemoryStart();
-            }
+        Button btnCardBacks = new Button();
+        Panel pnlGrid = new Panel();
+        Point pt = new Point(0, 0);
+        int width = 70;
+        int height = 110;
+        int x = 61;
+        int y = 65;
+        public Label lblPairsLeft = new Label();
+        public List<Control> frontList = new List<Control>();
+        public List<Panel> gridList = new List<Panel>();
+        public List<Button> backList = new List<Button>();
+        public List<Panel> matchList = new List<Panel>();
+        public List<Button> matchBackList = new List<Button>();
+        public XAATArcadeTest form;
+        public bool memoryCleared;
+        public bool createMemoryStart;
+        public int count;
+        public bool noMatch;
+        public bool match;
 
+        public void Memory(XAATArcadeTest parent, bool memoryButton)
+        {
+            form = parent;
+            CreateMemoryStart();
+        }
 
-            public void CreateMemoryStart()
-            {
-                lblPairsLeft = new Label();
-                lblGameOver = new Label();
-                lblGameOver.Text = "GAME OVER";
-            }
+        public void CreateMemoryStart()
+        {
+            lblPairsLeft = new Label();
+            createMemoryStart = true;
+        }
 
         public void CreateCards(bool clickedCreatCardsButton)
+        {
+            if (clickedCreatCardsButton == true)
             {
                 ClearMemory();
                 CreateMemoryStart();
 
-                lblPairsLeft.Text = "10";
-                for (int row = 0; row <= 3; row++)
+                lblPairsLeft.Text = "2";
+                for (int row = 0; row <= 1; row++)
                 {
-                    for (int column = 0; column <= 4; column++)
+                    for (int column = 0; column <= 1; column++)
                     {
                         pnlGrid = new Panel();
+                        pnlGrid.Location = new Point(x + (column * (width + 5)), y + (row * (height + 5)));
                         pnlGrid.Name = row + " , " + column;
                         gridList.Add(pnlGrid);
 
                         btnCardBacks = new Button();
+                        btnCardBacks.Location = new Point(x + (column * (width + 5)), y + (row * (height + 5)));
                         btnCardBacks.Name = row + " , " + column;
                         backList.Add(btnCardBacks);
                     }
                 }
 
-                foreach (Button x in backList)
-                {
-                    x.BringToFront();
-                }
-                //Setting up the different picture boxes
                 PictureBox pbCard1 = new PictureBox();
                 PictureBox pbCard2 = new PictureBox();
                 PictureBox pbCard3 = new PictureBox();
                 PictureBox pbCard4 = new PictureBox();
-                PictureBox pbCard5 = new PictureBox();
-                PictureBox pbCard6 = new PictureBox();
-                PictureBox pbCard7 = new PictureBox();
-                PictureBox pbCard8 = new PictureBox();
-                PictureBox pbCard9 = new PictureBox();
-                PictureBox pbCard10 = new PictureBox();
-                PictureBox pbCard11 = new PictureBox();
-                PictureBox pbCard12 = new PictureBox();
-                PictureBox pbCard13 = new PictureBox();
-                PictureBox pbCard14 = new PictureBox();
-                PictureBox pbCard15 = new PictureBox();
-                PictureBox pbCard16 = new PictureBox();
-                PictureBox pbCard17 = new PictureBox();
-                PictureBox pbCard18 = new PictureBox();
-                PictureBox pbCard19 = new PictureBox();
-                PictureBox pbCard20 = new PictureBox();
 
                 pbCard1.Name = "bowAndArrow";
+                pbCard1.Size = new Size(1,1);
                 frontList.Add(pbCard1);
-            
+
                 pbCard2.Name = "circle";
+                pbCard2.Size = new Size(1, 1);
                 frontList.Add(pbCard2);
 
-                pbCard3.Name = "diamond";
+                pbCard3.Name = "bowAndArrow";
+                pbCard3.Size = new Size(1, 1);
                 frontList.Add(pbCard3);
-            
-                pbCard4.Name = "heart";
+
+                pbCard4.Name = "circle";
+                pbCard4.Size = new Size(1, 1);
                 frontList.Add(pbCard4);
-            
-                pbCard5.Name = "knife";
-                frontList.Add(pbCard5);
-            
-                pbCard6.Name = "lightning";
-                frontList.Add(pbCard6);
-            
-                pbCard7.Name = "rectangle";
-                frontList.Add(pbCard7);
-            
-                pbCard8.Name = "shield";
-                frontList.Add(pbCard8);
-            
-                pbCard9.Name = "shurikin";
-                frontList.Add(pbCard9);
-            
-                pbCard10.Name = "star";
-                frontList.Add(pbCard10);
-            
-                pbCard11.Name = "bowAndArrow";
-                frontList.Add(pbCard11);
-            
-                pbCard12.Name = "circle";
-                frontList.Add(pbCard12);
-            
-                pbCard13.Name = "diamond";
-                frontList.Add(pbCard13);
-            
-                pbCard14.Name = "heart";
-                frontList.Add(pbCard14);
-            
-                pbCard15.Name = "knife";
-                frontList.Add(pbCard15);
-            
-                pbCard16.Name = "lightning";
-                frontList.Add(pbCard16);
-            
-                pbCard17.Name = "rectangle";
-                frontList.Add(pbCard17);
-            
-                pbCard18.Name = "shield";
-                frontList.Add(pbCard18);
-            
-                pbCard19.Name = "shurikin";
-                frontList.Add(pbCard19);
-            
-                pbCard20.Name = "star";
-                frontList.Add(pbCard20);
 
-                List<int> indexList = new List<int>();
-                while (indexList.Count < 20)
+                for (int i = 0; i < gridList.Count; i++)
                 {
-                    int index = rand.Next(gridList.Count);
-                    if (indexList.Count == 0 || !indexList.Contains(index))
-                    {
-                        indexList.Add(index);
-                    }
-                }
-
-                for (int i = 0; i < indexList.Count; i++)
-                {
-                    int randomIndex = indexList[i];
-                    gridList[randomIndex].Controls.Add(frontList[i]);
-                }
-
-            }
-
-        public void GameOver()
-            {
-                lblGameOver.BringToFront();
-                lblGameOver.Visible = true;
-
-                foreach (Button b in backList)
-                {
-                    b.Enabled = false;
+                    gridList[i].Controls.Add(frontList[i]);
                 }
             }
-        //Method for when a card is selected, it checks the cards and makes the image visiable
-        public void CardSelect(object sender, EventArgs e)
-            {
-                Button clickedBack = (Button)sender;
-                int count = 0;
+        }
 
+        public void CardSelect(bool cardSelected, Button clickedBack)
+        {
+            if (cardSelected == true)
+            {
+                count = 0;
                 foreach (Button b in backList)
                 {
                     if (b.Visible == false)
@@ -209,72 +113,75 @@ namespace XAATArcade
                     }
                 }
             }
-            //
-            public async Task CardCheck()
+        }
+
+        public void CardCheck()
+        {
+            foreach (Button b in backList)
             {
-                await Task.Delay(250);
-                foreach (Button b in backList)
+                if (b.Visible == false)
                 {
-                    if (b.Visible == false)
+                    matchBackList.Add(b);
+                    foreach (Panel p in gridList)
                     {
-                        matchBackList.Add(b);
-                        foreach (Panel p in gridList)
+                        if (b.Location == p.Location)
                         {
-                            if (b.Location == p.Location)
-                            {
-                                matchList.Add(p);
-                                break;
-                            }
+                            matchList.Add(p);
+                            break;
                         }
                     }
                 }
-                //if the list of match is > 0 remove and dispose from the matchlist
-                if (matchList.Count > 0)
+            }
+
+            if (matchList.Count > 0)
+            {
+                if (matchList[0].GetChildAtPoint(pt).Name == matchList[1].GetChildAtPoint(pt).Name)
                 {
-                    if (matchList[0].GetChildAtPoint(pt).Name == matchList[1].GetChildAtPoint(pt).Name)
-                    {
-                        backList.Remove(matchBackList[1]);
-                        backList.Remove(matchBackList[0]);
-                        matchBackList[1].Dispose();
-                        matchBackList[0].Dispose();
-                        matchBackList.Clear();
-                        gridList.Remove(matchList[1]);
-                        gridList.Remove(matchList[0]);
-                        frontList.Remove(matchList[1].GetChildAtPoint(pt));
-                        frontList.Remove(matchList[0].GetChildAtPoint(pt));
-                        matchList[1].Dispose();
-                        matchList[0].Dispose();
-                        matchList.Clear();
-                        lblPairsLeft.Text = (frontList.Count / 2).ToString();
-                    }
-                    else
-                    {
-                        matchBackList[1].Visible = true;
-                        matchBackList[0].Visible = true;
-                        matchBackList.Clear();
-                        matchList.Clear();
-                    }
+                    backList.Remove(matchBackList[1]);
+                    backList.Remove(matchBackList[0]);
+                    matchBackList[1].Dispose();
+                    matchBackList[0].Dispose();
+                    matchBackList.Clear();
+                    gridList.Remove(matchList[1]);
+                    gridList.Remove(matchList[0]);
+                    frontList.Remove(matchList[1].GetChildAtPoint(pt));
+                    frontList.Remove(matchList[0].GetChildAtPoint(pt));
+                    matchList[1].Dispose();
+                    matchList[0].Dispose();
+                    matchList.Clear();
+                    lblPairsLeft.Text = (frontList.Count / 2).ToString();
+                    match = true;
+                }
+                else
+                {
+                    matchBackList[1].Visible = true;
+                    matchBackList[0].Visible = true;
+                    matchBackList.Clear();
+                    matchList.Clear();
+                    noMatch = true;
+
                 }
             }
+        }
 
-            public void ClearMemory()
-            {
-                frontList.Clear();
-                gridList.Clear();
-                backList.Clear();
-                matchList.Clear();
-                matchBackList.Clear();
-
-            }
+        public void ClearMemory()
+        {
+            frontList.Clear();
+            gridList.Clear();
+            backList.Clear();
+            matchList.Clear();
+            matchBackList.Clear();
+            memoryCleared = true;
+        }
 
         public void BackButton(bool backButtonclicked)
+        {
+            if (backButtonclicked == true)
             {
                 ClearMemory();
                 form.AddTitlePage();
                 form.memoryPlayed = false;
             }
-
-
-
         }
+    }
 }

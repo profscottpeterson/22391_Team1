@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace XAATArcade
 {
@@ -15,17 +13,15 @@ namespace XAATArcade
         public Label lblScore = new Label();
         public List<Panel> gridList = new List<Panel>();
         public  List<Panel> sequenceList = new List<Panel>();
-        public List<Panel> pickedList = new List<Panel>();
         public List<Panel> clickedList = new List<Panel>();
         public Random rand = new Random();
         public bool error = false;
         public XAATArcadeTest form;
-
-
         public bool sequenceCleared;
         public bool createSequenceStart;
         public string panelStatus;
         public string gameStatus;
+        public List<Panel> testList = new List<Panel>();
 
         public void Sequence(XAATArcadeTest parent, bool sequenceButton)
         {
@@ -47,11 +43,10 @@ namespace XAATArcade
                     gridList.Add(pnlGrid);
                 }
             }
-
             createSequenceStart = true;
         }
 
-        public void SequenceStart(bool sequenceStartButton)
+        public void SequenceStart(bool sequenceStartButton, Panel p)
         {
             if (sequenceStartButton == true)
             {
@@ -61,7 +56,7 @@ namespace XAATArcade
                     CreateSequenceStart();
                     error = false;
                 }
-                StartSequence();
+                testList = StartSequence(p);
             }
         }
 
@@ -91,57 +86,37 @@ namespace XAATArcade
             }
         }
 
-        public async Task StartSequence()
+        public List<Panel> StartSequence(Panel p)
         {
             lblScore.Text = sequenceList.Count().ToString();
-            sequenceList.Add(gridList[rand.Next(gridList.Count)]);
+            sequenceList.Add(p);
 
             if (error == false)
             {
-                if (sequenceList.Count > 0)
-                {
-                    foreach (Panel p in sequenceList)
-                    {
-                        p.Enabled = false;
-                    }
-                    foreach (Panel p in sequenceList)
-                    {
-                        pickedList.Add(p);
-                        Color color = p.BackColor;
-                        await Task.Delay(1000);
-                        p.BackColor = Color.Black;
-                        p.BackgroundImage = Properties.Resources.sequencesquareHover;
-                        await Task.Delay(300);
-                        p.BackColor = color;
-                        p.BackgroundImage = Properties.Resources.sequenceBoarder;
-                    }
-                    foreach (Panel p in sequenceList)
-                    {
-                        p.Enabled = true;
-                    }
-                }
+                return sequenceList;
             }
+            else
+                return null;
         }
 
-        public void SequenceSelect(bool panelButton, Panel panelClicked)
+        public void SequenceSelect(bool panelButton, Panel panelClicked, Panel p)
         {
             if (panelButton == true)
             {
-                Panel clickedSquare = (Panel)panelClicked;
-                clickedList.Add(clickedSquare);
+                clickedList.Add(panelClicked);
 
-                if (clickedList.Count == pickedList.Count)
+                if (clickedList.Count == sequenceList.Count)
                 {
-                    CheckSequence();
+                    CheckSequence(p);
                 }
             }
         }
 
-        public async Task CheckSequence()
+        public void CheckSequence(Panel p)
         {
             for (int i = 0; i < clickedList.Count; i++)
             {
-                if (clickedList[i] != pickedList[i])
+                if (clickedList[i] != sequenceList[i])
                 {
                     error = true;
                     gameStatus = "Game Over. New game will start.";
@@ -150,14 +125,14 @@ namespace XAATArcade
             }
             if (error == false)
             {
-                await StartSequence();
+                StartSequence(p);
             }
             else
             {
                 ClearSequence();
                 CreateSequenceStart();
                 error = false;
-                await StartSequence();
+                StartSequence(p);
             }
         }
 
@@ -166,7 +141,6 @@ namespace XAATArcade
             sequenceList.Clear();
             gridList.Clear();
             clickedList.Clear();
-            pickedList.Clear();
             sequenceCleared = true;
         }
 
