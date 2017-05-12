@@ -35,10 +35,22 @@
             this.tBallMovement = new System.Windows.Forms.Timer(this.components);
             this.btnStart = new System.Windows.Forms.Button();
             this.pnlGameOver = new targetPractice.Form1.DoubleBufferedPanel();
-            this.lblGOOptions = new System.Windows.Forms.Label();
-            this.lblGOScore = new System.Windows.Forms.Label();
             this.btnGOReset = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblGOScoreMarker = new System.Windows.Forms.Label();
+            this.lblGOScoreDisplay = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblCurrentSpawnSpeed = new System.Windows.Forms.Label();
+            this.lblCurrentMovement = new System.Windows.Forms.Label();
+            this.lblCurrentCursor = new System.Windows.Forms.Label();
+            this.lblCurrentSpeed = new System.Windows.Forms.Label();
+            this.lblCurrentBallSize = new System.Windows.Forms.Label();
+            this.lblCurrentBallColor = new System.Windows.Forms.Label();
             this.pnlOptoinsMenu = new targetPractice.Form1.DoubleBufferedPanel();
             this.cbDisableMovement = new System.Windows.Forms.CheckBox();
             this.cbSpawnSpeed = new System.Windows.Forms.ComboBox();
@@ -110,50 +122,148 @@
             this.pnlGameOver.BackColor = System.Drawing.Color.Transparent;
             this.pnlGameOver.BackgroundImage = global::targetPractice.Properties.Resources.gameoverscreen;
             this.pnlGameOver.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlGameOver.Controls.Add(this.lblGOOptions);
-            this.pnlGameOver.Controls.Add(this.lblGOScore);
             this.pnlGameOver.Controls.Add(this.btnGOReset);
+            this.pnlGameOver.Controls.Add(this.label1);
+            this.pnlGameOver.Controls.Add(this.label2);
+            this.pnlGameOver.Controls.Add(this.label4);
+            this.pnlGameOver.Controls.Add(this.label5);
+            this.pnlGameOver.Controls.Add(this.label7);
+            this.pnlGameOver.Controls.Add(this.label8);
+            this.pnlGameOver.Controls.Add(this.lblGOScoreMarker);
+            this.pnlGameOver.Controls.Add(this.lblGOScoreDisplay);
             this.pnlGameOver.Controls.Add(this.label3);
+            this.pnlGameOver.Controls.Add(this.lblCurrentSpawnSpeed);
+            this.pnlGameOver.Controls.Add(this.lblCurrentMovement);
+            this.pnlGameOver.Controls.Add(this.lblCurrentCursor);
+            this.pnlGameOver.Controls.Add(this.lblCurrentSpeed);
+            this.pnlGameOver.Controls.Add(this.lblCurrentBallSize);
+            this.pnlGameOver.Controls.Add(this.lblCurrentBallColor);
             this.pnlGameOver.Enabled = false;
-            this.pnlGameOver.Location = new System.Drawing.Point(99, 418);
+            this.pnlGameOver.Location = new System.Drawing.Point(99, 92);
             this.pnlGameOver.Name = "pnlGameOver";
             this.pnlGameOver.Size = new System.Drawing.Size(484, 293);
             this.pnlGameOver.TabIndex = 3;
             this.pnlGameOver.Visible = false;
             // 
-            // lblGOOptions
-            // 
-            this.lblGOOptions.AutoSize = true;
-            this.lblGOOptions.ForeColor = System.Drawing.Color.White;
-            this.lblGOOptions.Location = new System.Drawing.Point(348, 134);
-            this.lblGOOptions.Name = "lblGOOptions";
-            this.lblGOOptions.Size = new System.Drawing.Size(35, 13);
-            this.lblGOOptions.TabIndex = 9;
-            this.lblGOOptions.Text = "Score";
-            // 
-            // lblGOScore
-            // 
-            this.lblGOScore.AutoSize = true;
-            this.lblGOScore.ForeColor = System.Drawing.Color.White;
-            this.lblGOScore.Location = new System.Drawing.Point(55, 134);
-            this.lblGOScore.Name = "lblGOScore";
-            this.lblGOScore.Size = new System.Drawing.Size(35, 13);
-            this.lblGOScore.TabIndex = 8;
-            this.lblGOScore.Text = "Score";
-            // 
             // btnGOReset
             // 
             this.btnGOReset.FlatAppearance.BorderSize = 0;
             this.btnGOReset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnGOReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnGOReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btnGOReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGOReset.Location = new System.Drawing.Point(204, 231);
+            this.btnGOReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGOReset.ForeColor = System.Drawing.Color.White;
+            this.btnGOReset.Location = new System.Drawing.Point(336, 219);
             this.btnGOReset.Name = "btnGOReset";
             this.btnGOReset.Size = new System.Drawing.Size(71, 40);
             this.btnGOReset.TabIndex = 7;
             this.btnGOReset.Text = "Reset";
             this.btnGOReset.UseVisualStyleBackColor = true;
             this.btnGOReset.Click += new System.EventHandler(this.btnGOReset_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(-99, 246);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(270, 25);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Spawn Speed:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Location = new System.Drawing.Point(-179, 215);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(348, 25);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Ball Movement:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Location = new System.Drawing.Point(-84, 184);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(255, 25);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Cursor Type:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Location = new System.Drawing.Point(-28, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(199, 25);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Speed:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Location = new System.Drawing.Point(-50, 91);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(221, 25);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Ball Size:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Location = new System.Drawing.Point(-59, 122);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(230, 25);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Ball Color:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblGOScoreMarker
+            // 
+            this.lblGOScoreMarker.AutoSize = true;
+            this.lblGOScoreMarker.ForeColor = System.Drawing.Color.White;
+            this.lblGOScoreMarker.Location = new System.Drawing.Point(298, 119);
+            this.lblGOScoreMarker.Name = "lblGOScoreMarker";
+            this.lblGOScoreMarker.Size = new System.Drawing.Size(35, 13);
+            this.lblGOScoreMarker.TabIndex = 9;
+            this.lblGOScoreMarker.Text = "Score";
+            // 
+            // lblGOScoreDisplay
+            // 
+            this.lblGOScoreDisplay.AutoSize = true;
+            this.lblGOScoreDisplay.ForeColor = System.Drawing.Color.White;
+            this.lblGOScoreDisplay.Location = new System.Drawing.Point(351, 167);
+            this.lblGOScoreDisplay.Name = "lblGOScoreDisplay";
+            this.lblGOScoreDisplay.Size = new System.Drawing.Size(35, 13);
+            this.lblGOScoreDisplay.TabIndex = 8;
+            this.lblGOScoreDisplay.Text = "Score";
             // 
             // label3
             // 
@@ -163,6 +273,90 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 25);
             this.label3.TabIndex = 6;
+            // 
+            // lblCurrentSpawnSpeed
+            // 
+            this.lblCurrentSpawnSpeed.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentSpawnSpeed.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentSpawnSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentSpawnSpeed.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentSpawnSpeed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentSpawnSpeed.Location = new System.Drawing.Point(16, 246);
+            this.lblCurrentSpawnSpeed.Name = "lblCurrentSpawnSpeed";
+            this.lblCurrentSpawnSpeed.Size = new System.Drawing.Size(240, 25);
+            this.lblCurrentSpawnSpeed.TabIndex = 30;
+            this.lblCurrentSpawnSpeed.Text = "Spawn Speed:";
+            this.lblCurrentSpawnSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCurrentMovement
+            // 
+            this.lblCurrentMovement.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentMovement.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentMovement.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentMovement.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentMovement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentMovement.Location = new System.Drawing.Point(70, 216);
+            this.lblCurrentMovement.Name = "lblCurrentMovement";
+            this.lblCurrentMovement.Size = new System.Drawing.Size(186, 25);
+            this.lblCurrentMovement.TabIndex = 29;
+            this.lblCurrentMovement.Text = "Ball Movement:";
+            this.lblCurrentMovement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCurrentCursor
+            // 
+            this.lblCurrentCursor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentCursor.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentCursor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentCursor.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentCursor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentCursor.Location = new System.Drawing.Point(31, 185);
+            this.lblCurrentCursor.Name = "lblCurrentCursor";
+            this.lblCurrentCursor.Size = new System.Drawing.Size(225, 25);
+            this.lblCurrentCursor.TabIndex = 28;
+            this.lblCurrentCursor.Text = "Cursor Type:";
+            this.lblCurrentCursor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCurrentSpeed
+            // 
+            this.lblCurrentSpeed.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentSpeed.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentSpeed.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentSpeed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentSpeed.Location = new System.Drawing.Point(87, 154);
+            this.lblCurrentSpeed.Name = "lblCurrentSpeed";
+            this.lblCurrentSpeed.Size = new System.Drawing.Size(169, 25);
+            this.lblCurrentSpeed.TabIndex = 27;
+            this.lblCurrentSpeed.Text = "Speed:";
+            this.lblCurrentSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCurrentBallSize
+            // 
+            this.lblCurrentBallSize.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentBallSize.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentBallSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBallSize.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentBallSize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentBallSize.Location = new System.Drawing.Point(65, 92);
+            this.lblCurrentBallSize.Name = "lblCurrentBallSize";
+            this.lblCurrentBallSize.Size = new System.Drawing.Size(191, 25);
+            this.lblCurrentBallSize.TabIndex = 26;
+            this.lblCurrentBallSize.Text = "Ball Size:";
+            this.lblCurrentBallSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCurrentBallColor
+            // 
+            this.lblCurrentBallColor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCurrentBallColor.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentBallColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBallColor.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentBallColor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentBallColor.Location = new System.Drawing.Point(56, 123);
+            this.lblCurrentBallColor.Name = "lblCurrentBallColor";
+            this.lblCurrentBallColor.Size = new System.Drawing.Size(200, 25);
+            this.lblCurrentBallColor.TabIndex = 25;
+            this.lblCurrentBallColor.Text = "Ball Color:";
+            this.lblCurrentBallColor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlOptoinsMenu
             // 
@@ -194,7 +388,7 @@
             // 
             this.cbDisableMovement.AutoSize = true;
             this.cbDisableMovement.ForeColor = System.Drawing.Color.White;
-            this.cbDisableMovement.Location = new System.Drawing.Point(317, 227);
+            this.cbDisableMovement.Location = new System.Drawing.Point(317, 219);
             this.cbDisableMovement.Name = "cbDisableMovement";
             this.cbDisableMovement.Size = new System.Drawing.Size(61, 17);
             this.cbDisableMovement.TabIndex = 19;
@@ -213,7 +407,7 @@
             "3",
             "4",
             "5"});
-            this.cbSpawnSpeed.Location = new System.Drawing.Point(326, 260);
+            this.cbSpawnSpeed.Location = new System.Drawing.Point(326, 252);
             this.cbSpawnSpeed.Name = "cbSpawnSpeed";
             this.cbSpawnSpeed.Size = new System.Drawing.Size(131, 21);
             this.cbSpawnSpeed.TabIndex = 17;
@@ -226,7 +420,7 @@
             this.lblBallSpawnSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBallSpawnSpeed.ForeColor = System.Drawing.Color.White;
             this.lblBallSpawnSpeed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBallSpawnSpeed.Location = new System.Drawing.Point(53, 257);
+            this.lblBallSpawnSpeed.Location = new System.Drawing.Point(53, 247);
             this.lblBallSpawnSpeed.Name = "lblBallSpawnSpeed";
             this.lblBallSpawnSpeed.Size = new System.Drawing.Size(270, 25);
             this.lblBallSpawnSpeed.TabIndex = 18;
@@ -257,7 +451,7 @@
             this.cbCursorType.Items.AddRange(new object[] {
             "Cross",
             "Default"});
-            this.cbCursorType.Location = new System.Drawing.Point(326, 198);
+            this.cbCursorType.Location = new System.Drawing.Point(326, 190);
             this.cbCursorType.Name = "cbCursorType";
             this.cbCursorType.Size = new System.Drawing.Size(131, 21);
             this.cbCursorType.TabIndex = 12;
@@ -270,7 +464,7 @@
             this.lblBallMovement.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBallMovement.ForeColor = System.Drawing.Color.White;
             this.lblBallMovement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBallMovement.Location = new System.Drawing.Point(-27, 226);
+            this.lblBallMovement.Location = new System.Drawing.Point(-27, 216);
             this.lblBallMovement.Name = "lblBallMovement";
             this.lblBallMovement.Size = new System.Drawing.Size(348, 25);
             this.lblBallMovement.TabIndex = 11;
@@ -291,7 +485,7 @@
             "6",
             "7",
             "8"});
-            this.cbSpeed.Location = new System.Drawing.Point(326, 167);
+            this.cbSpeed.Location = new System.Drawing.Point(326, 159);
             this.cbSpeed.Name = "cbSpeed";
             this.cbSpeed.Size = new System.Drawing.Size(131, 21);
             this.cbSpeed.TabIndex = 9;
@@ -310,7 +504,7 @@
             "Orange",
             "Purple",
             "Pokeball"});
-            this.cbBallColor.Location = new System.Drawing.Point(326, 136);
+            this.cbBallColor.Location = new System.Drawing.Point(326, 128);
             this.cbBallColor.Name = "cbBallColor";
             this.cbBallColor.Size = new System.Drawing.Size(131, 21);
             this.cbBallColor.TabIndex = 8;
@@ -327,7 +521,7 @@
             "60",
             "50",
             "40"});
-            this.cbBallSize.Location = new System.Drawing.Point(326, 105);
+            this.cbBallSize.Location = new System.Drawing.Point(326, 97);
             this.cbBallSize.Name = "cbBallSize";
             this.cbBallSize.Size = new System.Drawing.Size(131, 21);
             this.cbBallSize.TabIndex = 7;
@@ -349,7 +543,7 @@
             this.lblCursorType.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCursorType.ForeColor = System.Drawing.Color.White;
             this.lblCursorType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCursorType.Location = new System.Drawing.Point(68, 195);
+            this.lblCursorType.Location = new System.Drawing.Point(68, 185);
             this.lblCursorType.Name = "lblCursorType";
             this.lblCursorType.Size = new System.Drawing.Size(255, 25);
             this.lblCursorType.TabIndex = 5;
@@ -363,7 +557,7 @@
             this.lblBallSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBallSpeed.ForeColor = System.Drawing.Color.White;
             this.lblBallSpeed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBallSpeed.Location = new System.Drawing.Point(124, 164);
+            this.lblBallSpeed.Location = new System.Drawing.Point(124, 154);
             this.lblBallSpeed.Name = "lblBallSpeed";
             this.lblBallSpeed.Size = new System.Drawing.Size(199, 25);
             this.lblBallSpeed.TabIndex = 2;
@@ -377,7 +571,7 @@
             this.lblBallSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBallSize.ForeColor = System.Drawing.Color.White;
             this.lblBallSize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBallSize.Location = new System.Drawing.Point(102, 102);
+            this.lblBallSize.Location = new System.Drawing.Point(102, 92);
             this.lblBallSize.Name = "lblBallSize";
             this.lblBallSize.Size = new System.Drawing.Size(221, 25);
             this.lblBallSize.TabIndex = 1;
@@ -391,7 +585,7 @@
             this.lblBallColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBallColor.ForeColor = System.Drawing.Color.White;
             this.lblBallColor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBallColor.Location = new System.Drawing.Point(93, 133);
+            this.lblBallColor.Location = new System.Drawing.Point(93, 123);
             this.lblBallColor.Name = "lblBallColor";
             this.lblBallColor.Size = new System.Drawing.Size(230, 25);
             this.lblBallColor.TabIndex = 0;
@@ -410,7 +604,7 @@
             this.pnlHUD.Controls.Add(this.lblScoreHit);
             this.pnlHUD.Controls.Add(this.pbLife1);
             this.pnlHUD.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlHUD.Location = new System.Drawing.Point(2, 556);
+            this.pnlHUD.Location = new System.Drawing.Point(2, 518);
             this.pnlHUD.Name = "pnlHUD";
             this.pnlHUD.Size = new System.Drawing.Size(680, 183);
             this.pnlHUD.TabIndex = 0;
@@ -490,7 +684,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(684, 741);
+            this.ClientSize = new System.Drawing.Size(684, 702);
             this.Controls.Add(this.pnlGameOver);
             this.Controls.Add(this.pnlOptoinsMenu);
             this.Controls.Add(this.pnlHUD);
@@ -499,7 +693,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "Form1";
+            this.Text = "Target Practice";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
@@ -546,9 +740,21 @@
         private System.Windows.Forms.Button btnGOReset;
         private DoubleBufferedPanel pnlOptoinsMenu;
         private DoubleBufferedPanel pnlGameOver;
-        private System.Windows.Forms.Label lblGOOptions;
-        private System.Windows.Forms.Label lblGOScore;
+        private System.Windows.Forms.Label lblGOScoreMarker;
+        private System.Windows.Forms.Label lblGOScoreDisplay;
         private System.Windows.Forms.CheckBox cbDisableMovement;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblCurrentSpawnSpeed;
+        private System.Windows.Forms.Label lblCurrentMovement;
+        private System.Windows.Forms.Label lblCurrentCursor;
+        private System.Windows.Forms.Label lblCurrentSpeed;
+        private System.Windows.Forms.Label lblCurrentBallSize;
+        private System.Windows.Forms.Label lblCurrentBallColor;
     }
 }
 

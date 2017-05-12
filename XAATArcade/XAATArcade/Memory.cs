@@ -58,6 +58,7 @@ namespace XAATArcade
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
         Font font;
+        Font fontGo;
         FontFamily ff;
         //Method to set fonts and buttons most noteably the start and back buttons dynamicly
         public void CreateMemoryStart()
@@ -82,6 +83,7 @@ namespace XAATArcade
             ff = pfc.Families[0];
 
             font = new Font(ff, 5f, FontStyle.Regular);
+            fontGo = new Font(ff, 10f, FontStyle.Regular);
 
             btnBack = new Button();
             btnBack.Location = new Point((formSize.Width - formSize.Width) + 1, (formSize.Height - formSize.Height) + 1);
@@ -141,7 +143,11 @@ namespace XAATArcade
             lblGameOver = new Label();
             lblGameOver.Location = new Point(formSize.Width - (formSize.Width / 2) - 50, formSize.Height - (formSize.Height / 2) - 50);
             lblGameOver.Size = new Size(100, 100);
+            lblGameOver.BackColor = Color.Blue;
+            lblGameOver.ForeColor = Color.White;
             lblGameOver.Text = "GAME OVER";
+            lblGameOver.Font = fontGo;
+            
             lblGameOver.TextAlign = ContentAlignment.MiddleCenter;
             lblGameOver.Visible = false;
             form.Controls.Add(lblGameOver);
@@ -218,18 +224,18 @@ namespace XAATArcade
             pbCard1.Size = new Size(width, height);
             frontList.Add(pbCard1);
 
-            pbCard2.Image = Properties.Resources.circle;
-            pbCard2.Name = "circle";
+            pbCard2.Image = Properties.Resources.boot;
+            pbCard2.Name = "boot";
             pbCard2.Size = new Size(width, height);
             frontList.Add(pbCard2);
             
-            pbCard3.Image = Properties.Resources.diamond;
-            pbCard3.Name = "diamond";
+            pbCard3.Image = Properties.Resources.helm;
+            pbCard3.Name = "helm";
             pbCard3.Size = new Size(width, height);
             frontList.Add(pbCard3);
 
-            pbCard4.Image = Properties.Resources.heart;
-            pbCard4.Name = "heart";
+            pbCard4.Image = Properties.Resources.lance;
+            pbCard4.Name = "lance";
             pbCard4.Size = new Size(width, height);
             frontList.Add(pbCard4);
 
@@ -238,13 +244,13 @@ namespace XAATArcade
             pbCard5.Size = new Size(width, height);
             frontList.Add(pbCard5);
 
-            pbCard6.Image = Properties.Resources.lightning;
-            pbCard6.Name = "lightning";
+            pbCard6.Image = Properties.Resources.scimitar;
+            pbCard6.Name = "scimitar";
             pbCard6.Size = new Size(width, height);
             frontList.Add(pbCard6);
 
-            pbCard7.Image = Properties.Resources.rectangle;
-            pbCard7.Name = "rectangle";
+            pbCard7.Image = Properties.Resources.scythe;
+            pbCard7.Name = "scythe";
             pbCard7.Size = new Size(width, height);
             frontList.Add(pbCard7);
 
@@ -258,8 +264,8 @@ namespace XAATArcade
             pbCard9.Size = new Size(width, height);
             frontList.Add(pbCard9);
 
-            pbCard10.Image = Properties.Resources.star;
-            pbCard10.Name = "star";
+            pbCard10.Image = Properties.Resources.warhammer;
+            pbCard10.Name = "warhammer";
             pbCard10.Size = new Size(width, height);
             frontList.Add(pbCard10);
 
@@ -268,18 +274,18 @@ namespace XAATArcade
             pbCard11.Size = new Size(width, height);
             frontList.Add(pbCard11);
 
-            pbCard12.Image = Properties.Resources.circle;
-            pbCard12.Name = "circle";
+            pbCard12.Image = Properties.Resources.boot;
+            pbCard12.Name = "boot";
             pbCard12.Size = new Size(width, height);
             frontList.Add(pbCard12);
 
-            pbCard13.Image = Properties.Resources.diamond;
-            pbCard13.Name = "diamond";
+            pbCard13.Image = Properties.Resources.helm;
+            pbCard13.Name = "helm";
             pbCard13.Size = new Size(width, height);
             frontList.Add(pbCard13);
 
-            pbCard14.Image = Properties.Resources.heart;
-            pbCard14.Name = "heart";
+            pbCard14.Image = Properties.Resources.lance;
+            pbCard14.Name = "lance";
             pbCard14.Size = new Size(width, height);
             frontList.Add(pbCard14);
 
@@ -288,13 +294,13 @@ namespace XAATArcade
             pbCard15.Size = new Size(width, height);
             frontList.Add(pbCard15);
 
-            pbCard16.Image = Properties.Resources.lightning;
-            pbCard16.Name = "lightning";
+            pbCard16.Image = Properties.Resources.scimitar;
+            pbCard16.Name = "scimitar";
             pbCard16.Size = new Size(width, height);
             frontList.Add(pbCard16);
 
-            pbCard17.Image = Properties.Resources.rectangle;
-            pbCard17.Name = "rectangle";
+            pbCard17.Image = Properties.Resources.scythe;
+            pbCard17.Name = "scythe";
             pbCard17.Size = new Size(width, height);
             frontList.Add(pbCard17);
 
@@ -308,8 +314,8 @@ namespace XAATArcade
             pbCard19.Size = new Size(width, height);
             frontList.Add(pbCard19);
 
-            pbCard20.Image = Properties.Resources.star;
-            pbCard20.Name = "star";
+            pbCard20.Image = Properties.Resources.warhammer;
+            pbCard20.Name = "warhammer";
             pbCard20.Size = new Size(width, height);
             frontList.Add(pbCard20);
             //adds the different images to the list and randomizes them with the rand
@@ -361,7 +367,7 @@ namespace XAATArcade
                 }
             }));
             
-            if (m == 40)
+            if (m == 2)
             {
                 t.Stop();
                 form.Invoke(new Action(() =>

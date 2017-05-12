@@ -27,6 +27,7 @@ namespace targetPractice
             //streaming the different sounds
             hitplayer.Stream = Properties.Resources.NFF_glassy_tap_02;
             missplayer.Stream = Properties.Resources.NFF_clog_up;
+            endplayer.Stream = Properties.Resources.bloop_x;
             hitplayer.Load();
             missplayer.Load();
             hitplayer.Play();
@@ -68,6 +69,8 @@ namespace targetPractice
 
         System.Media.SoundPlayer hitplayer = new System.Media.SoundPlayer();
         System.Media.SoundPlayer missplayer = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer endplayer = new System.Media.SoundPlayer();
+
 
         private void tBallGenerator_Tick(object sender, EventArgs e)
         {
@@ -162,9 +165,13 @@ namespace targetPractice
             {
                 this.Cursor = Cursors.Default;
             }
-            else
+            else if(cbCursorType.SelectedIndex == 1)
             {
                 this.Cursor = Cursors.Cross;
+            }
+            else if(cbCursorType.SelectedIndex == 2)
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -309,7 +316,8 @@ namespace targetPractice
             lblBallMovement.Font = new Font(ff, 16, FontStyle.Regular);
             lblBallSpawnSpeed.Font = new Font(ff, 16, FontStyle.Regular);
             btnStart.Font = new Font(ff, 16, FontStyle.Regular);
-            lblGOScore.Font = new Font(ff, 30, FontStyle.Regular);
+            lblGOScoreMarker.Font = new Font(ff, 20, FontStyle.Regular);
+            lblGOScoreDisplay.Font = new Font(ff, 20, FontStyle.Regular);
             cbDisableMovement.Font = new Font(ff, 16, FontStyle.Regular);
         }
 
@@ -329,12 +337,44 @@ namespace targetPractice
         {
             pnlGameOver.Enabled = true;
             pnlGameOver.Visible = true;
+            if (cbBallColor.SelectedIndex != -1)
+            {
+                lblCurrentBallColor.Text = cbBallColor.Text;
+            }
+            else { lblCurrentBallColor.Text = "Default"; }
+            if (cbBallSize.SelectedIndex != -1)
+            {
+                lblCurrentBallSize.Text = cbBallSize.Text;
+            }
+            else { lblCurrentBallSize.Text = "Default"; }
+            if (cbSpeed.SelectedIndex != -1)
+            {
+                lblCurrentSpeed.Text = cbSpeed.Text;
+            }
+            else { lblCurrentSpeed.Text = "Default"; }
+            if (cbCursorType.SelectedIndex != -1) {
+
+               lblCurrentCursor.Text = cbCursorType.Text;
+            }
+            else { lblCurrentCursor.Text = "Default"; }
+            if (cbDisableMovement.Checked == true) {
+
+                lblCurrentMovement.Text = cbDisableMovement.Text;
+            }
+            else { lblCurrentMovement.Text = "Default"; }
+            if (cbSpawnSpeed.SelectedIndex != -1) {
+                lblCurrentSpawnSpeed.Text = cbSpawnSpeed.Text;
+            }
+            else { lblCurrentSpawnSpeed.Text = "Default"; }
+            lblGOScoreDisplay.Text = num_Balls_Hit.ToString();
+            pnlHUD.Visible = false;
         }
 
         private void HideGameOver()
         {
             pnlGameOver.Enabled = false;
             pnlGameOver.Visible = false;
+            pnlHUD.Visible = true;
         }
 
         private void MakeBall(int Speed) {
@@ -521,7 +561,7 @@ namespace targetPractice
                         ballIsGrowing.Remove(ballIsGrowing[ball_num]);
                         num_Balls_Missed += 1;
                         RemoveLife();
-                        missplayer.Play();
+                        endplayer.Play();
                     }
 
                 }
