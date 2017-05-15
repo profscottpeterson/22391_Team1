@@ -72,6 +72,7 @@
             this.btnOptionsMenu = new System.Windows.Forms.Button();
             this.lblScoreHit = new System.Windows.Forms.Label();
             this.pbLife1 = new System.Windows.Forms.PictureBox();
+            this.doubleBufferedPanel1 = new targetPractice.Form1.DoubleBufferedPanel();
             this.pnlGameOver.SuspendLayout();
             this.pnlOptoinsMenu.SuspendLayout();
             this.pnlHUD.SuspendLayout();
@@ -82,24 +83,22 @@
             // 
             // tBallSizeChanger
             // 
-            this.tBallSizeChanger.Enabled = true;
             this.tBallSizeChanger.Interval = 30;
             this.tBallSizeChanger.Tick += new System.EventHandler(this.tGameTime_Tick);
             // 
             // tBallGenerator
             // 
-            this.tBallGenerator.Enabled = true;
             this.tBallGenerator.Interval = 750;
             this.tBallGenerator.Tick += new System.EventHandler(this.tBallGenerator_Tick);
             // 
             // tBallMovement
             // 
-            this.tBallMovement.Enabled = true;
-            this.tBallMovement.Interval = 10;
+            this.tBallMovement.Interval = 1;
             this.tBallMovement.Tick += new System.EventHandler(this.tBallMovement_Tick);
             // 
             // btnStart
             // 
+            this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnStart.BackColor = System.Drawing.Color.Silver;
             this.btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStart.Enabled = false;
@@ -118,7 +117,9 @@
             // 
             // pnlGameOver
             // 
-            this.pnlGameOver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlGameOver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlGameOver.BackColor = System.Drawing.Color.Transparent;
             this.pnlGameOver.BackgroundImage = global::targetPractice.Properties.Resources.gameoverscreen;
             this.pnlGameOver.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -147,6 +148,7 @@
             // 
             // btnGOReset
             // 
+            this.btnGOReset.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGOReset.FlatAppearance.BorderSize = 0;
             this.btnGOReset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnGOReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
@@ -247,6 +249,7 @@
             // 
             // lblGOScoreMarker
             // 
+            this.lblGOScoreMarker.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblGOScoreMarker.AutoSize = true;
             this.lblGOScoreMarker.ForeColor = System.Drawing.Color.White;
             this.lblGOScoreMarker.Location = new System.Drawing.Point(298, 119);
@@ -257,6 +260,7 @@
             // 
             // lblGOScoreDisplay
             // 
+            this.lblGOScoreDisplay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblGOScoreDisplay.AutoSize = true;
             this.lblGOScoreDisplay.ForeColor = System.Drawing.Color.White;
             this.lblGOScoreDisplay.Location = new System.Drawing.Point(351, 167);
@@ -360,9 +364,12 @@
             // 
             // pnlOptoinsMenu
             // 
-            this.pnlOptoinsMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlOptoinsMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOptoinsMenu.BackColor = System.Drawing.Color.Transparent;
             this.pnlOptoinsMenu.BackgroundImage = global::targetPractice.Properties.Resources.optionsscreen;
+            this.pnlOptoinsMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlOptoinsMenu.Controls.Add(this.cbDisableMovement);
             this.pnlOptoinsMenu.Controls.Add(this.cbSpawnSpeed);
             this.pnlOptoinsMenu.Controls.Add(this.lblBallSpawnSpeed);
@@ -386,6 +393,7 @@
             // 
             // cbDisableMovement
             // 
+            this.cbDisableMovement.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbDisableMovement.AutoSize = true;
             this.cbDisableMovement.ForeColor = System.Drawing.Color.White;
             this.cbDisableMovement.Location = new System.Drawing.Point(317, 219);
@@ -429,6 +437,7 @@
             // 
             // btnOptionsExit
             // 
+            this.btnOptionsExit.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnOptionsExit.BackColor = System.Drawing.Color.DarkRed;
             this.btnOptionsExit.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnOptionsExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
@@ -594,6 +603,7 @@
             // 
             // pnlHUD
             // 
+            this.pnlHUD.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pnlHUD.AutoSize = true;
             this.pnlHUD.BackColor = System.Drawing.Color.Black;
             this.pnlHUD.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlHUD.BackgroundImage")));
@@ -611,11 +621,12 @@
             // 
             // pbLife3
             // 
+            this.pbLife3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pbLife3.BackColor = System.Drawing.Color.Transparent;
             this.pbLife3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbLife3.Image = global::targetPractice.Properties.Resources.life;
             this.pbLife3.InitialImage = null;
-            this.pbLife3.Location = new System.Drawing.Point(213, 90);
+            this.pbLife3.Location = new System.Drawing.Point(213, 98);
             this.pbLife3.Name = "pbLife3";
             this.pbLife3.Size = new System.Drawing.Size(73, 65);
             this.pbLife3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -624,11 +635,12 @@
             // 
             // pbLife2
             // 
+            this.pbLife2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pbLife2.BackColor = System.Drawing.Color.Transparent;
             this.pbLife2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbLife2.Image = global::targetPractice.Properties.Resources.life;
             this.pbLife2.InitialImage = null;
-            this.pbLife2.Location = new System.Drawing.Point(123, 90);
+            this.pbLife2.Location = new System.Drawing.Point(123, 98);
             this.pbLife2.Name = "pbLife2";
             this.pbLife2.Size = new System.Drawing.Size(73, 65);
             this.pbLife2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -637,6 +649,7 @@
             // 
             // btnOptionsMenu
             // 
+            this.btnOptionsMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOptionsMenu.BackColor = System.Drawing.Color.Transparent;
             this.btnOptionsMenu.BackgroundImage = global::targetPractice.Properties.Resources.cog;
             this.btnOptionsMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -645,7 +658,7 @@
             this.btnOptionsMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnOptionsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptionsMenu.ForeColor = System.Drawing.Color.Transparent;
-            this.btnOptionsMenu.Location = new System.Drawing.Point(640, 142);
+            this.btnOptionsMenu.Location = new System.Drawing.Point(636, 150);
             this.btnOptionsMenu.Name = "btnOptionsMenu";
             this.btnOptionsMenu.Size = new System.Drawing.Size(30, 30);
             this.btnOptionsMenu.TabIndex = 8;
@@ -667,16 +680,30 @@
             // 
             // pbLife1
             // 
+            this.pbLife1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pbLife1.BackColor = System.Drawing.Color.Transparent;
             this.pbLife1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbLife1.Image = global::targetPractice.Properties.Resources.life;
             this.pbLife1.InitialImage = null;
-            this.pbLife1.Location = new System.Drawing.Point(36, 90);
+            this.pbLife1.Location = new System.Drawing.Point(36, 98);
             this.pbLife1.Name = "pbLife1";
             this.pbLife1.Size = new System.Drawing.Size(73, 65);
             this.pbLife1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLife1.TabIndex = 0;
             this.pbLife1.TabStop = false;
+            // 
+            // doubleBufferedPanel1
+            // 
+            this.doubleBufferedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.doubleBufferedPanel1.AutoSize = true;
+            this.doubleBufferedPanel1.BackColor = System.Drawing.Color.MidnightBlue;
+            this.doubleBufferedPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.doubleBufferedPanel1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.doubleBufferedPanel1.Location = new System.Drawing.Point(2, 517);
+            this.doubleBufferedPanel1.Name = "doubleBufferedPanel1";
+            this.doubleBufferedPanel1.Size = new System.Drawing.Size(680, 183);
+            this.doubleBufferedPanel1.TabIndex = 4;
             // 
             // Form1
             // 
@@ -685,10 +712,11 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(684, 702);
-            this.Controls.Add(this.pnlGameOver);
-            this.Controls.Add(this.pnlOptoinsMenu);
             this.Controls.Add(this.pnlHUD);
             this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.doubleBufferedPanel1);
+            this.Controls.Add(this.pnlOptoinsMenu);
+            this.Controls.Add(this.pnlGameOver);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -755,6 +783,7 @@
         private System.Windows.Forms.Label lblCurrentSpeed;
         private System.Windows.Forms.Label lblCurrentBallSize;
         private System.Windows.Forms.Label lblCurrentBallColor;
+        private DoubleBufferedPanel doubleBufferedPanel1;
     }
 }
 

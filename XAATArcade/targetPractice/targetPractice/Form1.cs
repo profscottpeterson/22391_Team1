@@ -128,11 +128,14 @@ namespace targetPractice
                 HideOptions();
                 ShowStartBtn();
                 this.Refresh();
+                ResetGame();
             }
             else if (pnlOptoinsMenu.Enabled == false)
             {
                 ShowOptions();
                 StopTimers();
+                ResetGame();
+                HideStartBtn();
             }
 
         }
@@ -146,17 +149,17 @@ namespace targetPractice
 
         private void cbBallColor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowStartBtn();
+
         }
 
         private void cbBallSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResetGame();
+            
         }
 
         private void cbSpeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResetGame();
+            
         }
 
         private void cbCursorType_SelectedIndexChanged(object sender, EventArgs e)
@@ -165,11 +168,11 @@ namespace targetPractice
             {
                 this.Cursor = Cursors.Default;
             }
-            else if(cbCursorType.SelectedIndex == 1)
+            else if(cbCursorType.SelectedIndex == 0)
             {
                 this.Cursor = Cursors.Cross;
             }
-            else if(cbCursorType.SelectedIndex == 2)
+            else if(cbCursorType.SelectedIndex == 1)
             {
                 this.Cursor = Cursors.Default;
             }
@@ -177,12 +180,32 @@ namespace targetPractice
 
         private void cbBallMovement_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResetGame();
+  
         }
 
         private void cbSpawnSpeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResetGame();
+ 
+            if (cbSpawnSpeed.SelectedIndex == 0)
+            {
+                tBallGenerator.Interval = 700;
+            }
+            else if (cbSpawnSpeed.SelectedIndex == 1)
+            {
+                tBallGenerator.Interval = 650;
+            }
+            else if (cbSpawnSpeed.SelectedIndex == 2)
+            {
+                tBallGenerator.Interval = 600;
+            }
+            else if (cbSpawnSpeed.SelectedIndex == 3)
+            {
+                tBallGenerator.Interval = 550;
+            }
+            else if (cbSpawnSpeed.SelectedIndex == 4)
+            {
+                tBallGenerator.Interval = 500;
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -207,7 +230,6 @@ namespace targetPractice
 
         private void DisableMovement_CheckedChanged(object sender, EventArgs e)
         {
-            ResetGame();
             cbBallSize.SelectedIndex = 0;
 
         }
@@ -367,7 +389,10 @@ namespace targetPractice
             }
             else { lblCurrentSpawnSpeed.Text = "Default"; }
             lblGOScoreDisplay.Text = num_Balls_Hit.ToString();
+            num_Balls_Hit = 0;
+            lblScoreHit.Text = num_Balls_Hit.ToString();
             pnlHUD.Visible = false;
+            doubleBufferedPanel1.Visible = false;
         }
 
         private void HideGameOver()
@@ -375,6 +400,7 @@ namespace targetPractice
             pnlGameOver.Enabled = false;
             pnlGameOver.Visible = false;
             pnlHUD.Visible = true;
+            doubleBufferedPanel1.Visible = true;
         }
 
         private void MakeBall(int Speed) {
@@ -437,8 +463,8 @@ namespace targetPractice
                 //default size
                 width = 18;
                 ballList.Add(new Rectangle(
-                    rand.Next(10, (formSize.Width - 60)),
-                    rand.Next(10, (formSize.Height - pnlHUD.Height) - 40),
+                    rand.Next(10, (formSize.Width - 100)),
+                    rand.Next(10, (formSize.Height - pnlHUD.Height) - 100),
                     width, width));
                 // add growing flag 
                 ballIsGrowing.Add(true);
@@ -447,16 +473,16 @@ namespace targetPractice
             //set speed of target
             if (Speed == -1) {
                 //default
-                vx = rand.Next(1, 5);
-                vy = rand.Next(1, 5);
+                vx = rand.Next(0, 5);
+                vy = rand.Next(0, 5);
             }
             else
             {
                 //if speed is picked
                 int ActualSpeed;
                 ActualSpeed = Speed + 1;
-                vx = ActualSpeed;
-                vy = ActualSpeed;
+                vx = rand.Next(0, ActualSpeed);
+                vy = rand.Next(0, ActualSpeed);
             }
 
             //randomize velocity direction
@@ -469,35 +495,32 @@ namespace targetPractice
         private void btnGOReset_Click(object sender, EventArgs e)
         {
             ResetGame();
+            this.Refresh();
         }
 
         private void MoveBall()
         {
             for (int ball_num = 0; ball_num < ballList.Count; ball_num++)
             {
-                int old_x = ballVelocity[ball_num].X;
-                int reverse_x = -(ballVelocity[ball_num].X);
-                int old_y = ballVelocity[ball_num].Y;
-                int reverse_y = -(ballVelocity[ball_num].Y);
 
                 // Move the ball.
                 int new_x = ballList[ball_num].X + ballVelocity[ball_num].X;
                 int new_y = ballList[ball_num].Y + ballVelocity[ball_num].Y;
 
-                if (new_x < 0)
+                if (new_x <= 3)
                 {
                     ballVelocity[ball_num] = new Point(-ballVelocity[ball_num].X, ballVelocity[ball_num].Y);
                 }
-                else if (new_x + ballList[ball_num].Width >= formSize.Width)
+                else if (new_x + ballList[ball_num].Width >= formSize.Width - 2)
                 {
                     ballVelocity[ball_num] = new Point(-ballVelocity[ball_num].X, ballVelocity[ball_num].Y);
                     new_x = new_x + ballVelocity[ball_num].X;
                 }
-                if (new_y < 0)
+                if (new_y <= 3)
                 {
                     ballVelocity[ball_num] = new Point(ballVelocity[ball_num].X, -ballVelocity[ball_num].Y);
                 }
-                else if (new_y + ballList[ball_num].Height >= formSize.Height - pnlHUD.Size.Height)
+                else if (new_y + ballList[ball_num].Height >= formSize.Height - pnlHUD.Size.Height - 2)
                 {
                     ballVelocity[ball_num] = new Point(ballVelocity[ball_num].X, -ballVelocity[ball_num].Y);
                     new_y = new_y + ballVelocity[ball_num].Y;
