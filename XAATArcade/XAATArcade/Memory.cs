@@ -157,7 +157,7 @@ namespace XAATArcade
             s = 0;
         }
         //Starts the timer and start button after clearing the memory game
-        void CreateCards(object sender, EventArgs e)
+        public void CreateCards(object sender, EventArgs e)
         {
             ClearMemory();
             CreateMemoryStart();

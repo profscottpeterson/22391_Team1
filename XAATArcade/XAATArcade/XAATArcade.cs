@@ -28,6 +28,9 @@ namespace XAATArcade
         Button btnMemory = new Button();
         Button btnReflex = new Button();
         Button btnClose = new Button();
+        Button btnSequenceRules = new Button();
+        Button btnMemoryRules = new Button();
+        Button btnReflexRules = new Button();
         Button btnChangeBackgroundColor = new Button();
         RadioButton rdBtnButtonSoundOn = new RadioButton();
         RadioButton rdBtnButtonSoundOff = new RadioButton();
@@ -50,6 +53,7 @@ namespace XAATArcade
         GroupBox grpBoxBackgroundSound = new GroupBox();
         GroupBox grpBoxMemoryTimer = new GroupBox();
         GroupBox grpBoxSequenceSpeed = new GroupBox();
+        GroupBox grpBoxGameRules = new GroupBox();
 
         Size formSize;
         Memory memory;
@@ -240,6 +244,7 @@ namespace XAATArcade
             //turns timer on
             rdBtnTimerOn.Location = new Point(10, 15);
             rdBtnTimerOn.Width = 40;
+            rdBtnTimerOn.Click += (s, z) => { ResetMemoryGame(s, z); };
             rdBtnTimerOn.Text = "On";
             rdBtnTimerOn.TextAlign = ContentAlignment.MiddleLeft;
             rdBtnTimerOn.CheckAlign = ContentAlignment.MiddleLeft;
@@ -250,6 +255,7 @@ namespace XAATArcade
             //turns timer off
             rdBtnTimerOff.Location = new Point(10, 40);
             rdBtnTimerOff.Width = 40;
+            rdBtnTimerOff.Click += (s, z) => { ResetMemoryGame(s, z); };
             rdBtnTimerOff.Text = "Off";
             rdBtnTimerOff.TextAlign = ContentAlignment.MiddleLeft;
             rdBtnTimerOff.CheckAlign = ContentAlignment.MiddleLeft;
@@ -264,7 +270,7 @@ namespace XAATArcade
             grpBoxSequenceSpeed.BackColor = Color.PaleGreen;
             pnlConfig.Controls.Add(grpBoxSequenceSpeed);
 
-            //seqeunce speed at 200
+            //sequence speed at 200
             rdBtnSpeed200.Location = new Point(10, 15);
             rdBtnSpeed200.Width = 60;
             rdBtnSpeed200.Text = "200";
@@ -273,7 +279,7 @@ namespace XAATArcade
             rdBtnSpeed200.MouseDown += (s, z) => { PlaySound(s, z); };
             grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed200);
 
-            //seqeunce speed at 300
+            //sequence speed at 300
             rdBtnSpeed300.Location = new Point(10, 40);
             rdBtnSpeed300.Width = 60;
             rdBtnSpeed300.Text = "300";
@@ -283,7 +289,7 @@ namespace XAATArcade
             rdBtnSpeed300.MouseDown += (s, z) => { PlaySound(s, z); };
             grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed300);
 
-            //seqeunce speed at 500
+            //sequence speed at 500
             rdBtnSpeed400.Location = new Point(10, 65);
             rdBtnSpeed400.Width = 60;
             rdBtnSpeed400.Text = "400";
@@ -292,7 +298,7 @@ namespace XAATArcade
             rdBtnSpeed400.MouseDown += (s, z) => { PlaySound(s, z); };
             grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed400);
 
-            //seqeunce speed at 500
+            //sequence speed at 500
             rdBtnSpeed500.Location = new Point(10, 90);
             rdBtnSpeed500.Width = 60;
             rdBtnSpeed500.Text = "500";
@@ -301,6 +307,54 @@ namespace XAATArcade
             rdBtnSpeed500.MouseDown += (s, z) => { PlaySound(s, z); };
             grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed500);
 
+            // Games rules
+            grpBoxGameRules.Location = new Point((((this.Width / 2) / 2) / 2) + 140, 60);
+            grpBoxGameRules.Size = new Size(165, 95);
+            grpBoxGameRules.Text = "Game Rules";
+            grpBoxGameRules.Name = "Game Rules Group Box";
+            grpBoxGameRules.BackColor = Color.Red;
+            pnlConfig.Controls.Add(grpBoxGameRules);
+
+            //sequence rules button
+            btnSequenceRules.Location = new Point(10, 15);
+            btnSequenceRules.Width = 80;
+            btnSequenceRules.Text = "Sequence";
+            btnSequenceRules.TextAlign = ContentAlignment.MiddleLeft;
+            btnSequenceRules.Click += (s, z) => { MessageBox.Show(
+                "Select speed at which the pattern is displayed in the options menu." + Environment.NewLine +
+                "Select Start for a new game." + Environment.NewLine +
+                "After the patern has finished displaying, select the correct tiles in the correct order." + Environment.NewLine +
+                "Play until the pattern is broken.", "Sequence Rules"); };
+            btnSequenceRules.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxGameRules.Controls.Add(btnSequenceRules);
+
+            //memory rules button
+            btnMemoryRules.Location = new Point(10, 40);
+            btnMemoryRules.Width = 80;
+            btnMemoryRules.Text = "Memory";
+            btnMemoryRules.TextAlign = ContentAlignment.MiddleLeft;
+            btnMemoryRules.Click += (s, z) => { MessageBox.Show(
+                "Select timer on or off in the options menu." + Environment.NewLine +
+                "Select New Game to start a new game." + Environment.NewLine +
+                "Select 2 cards." + Environment.NewLine +
+                "If cards match they will disapear if no they will be flipped over." + Environment.NewLine +
+                "When there are no longer any cards remaining you win.", "Memory Rules"); };
+            btnMemoryRules.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxGameRules.Controls.Add(btnMemoryRules);
+
+            //reflex rules button
+            btnReflexRules.Location = new Point(10, 65);
+            btnReflexRules.Width = 80;
+            btnReflexRules.Text = "Reflex";
+            btnReflexRules.TextAlign = ContentAlignment.MiddleLeft;
+            btnReflexRules.Click += (s, z) => { MessageBox.Show(
+                "Several options are avaliable in the options menu." + Environment.NewLine +
+                "Select Start to start a new game." + Environment.NewLine +
+                "Click circles as they appear on screen before they disapear." + Environment.NewLine +
+                "A life is lost of you click the background, there are more than 10 circles on the screen, or circle disapears." + Environment.NewLine +
+                "Play until all 3 lives are lost.", "Reflex Rules"); };
+            btnReflexRules.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxGameRules.Controls.Add(btnReflexRules);
         }
 
         public void AddTitlePage()
@@ -460,6 +514,12 @@ namespace XAATArcade
             {
                 this.BackColor = colorDialog1.Color;
             }
+        }
+
+        public void ResetMemoryGame(object sender, EventArgs e)
+        {
+            memory.CreateCards(sender, e);
+            pnlConfig.BringToFront();
         }
 
         public void CloseConfig(object sender, EventArgs e)
