@@ -180,7 +180,7 @@ namespace XAATArcade
             {
                 if (sequenceList.Count > 0)
                 {
-                    foreach (Panel p in sequenceList)
+                    foreach (Panel p in gridList)
                     {
                         p.Enabled = false;
                     }
@@ -188,14 +188,14 @@ namespace XAATArcade
                     {
                         pickedList.Add(p);
                         Color color = p.BackColor;
-                        await Task.Delay(1000);
+                        await Task.Delay(form.GetSpeed());
                         p.BackColor = Color.Black;
                         p.BackgroundImage = Properties.Resources.sequencesquareHover;
                         await Task.Delay(300);
                         p.BackColor = color;
                         p.BackgroundImage = Properties.Resources.sequenceBoarder;
                     }
-                    foreach (Panel p in sequenceList)
+                    foreach (Panel p in gridList)
                     {
                         p.Enabled = true;
                     }
@@ -221,7 +221,7 @@ namespace XAATArcade
                 if (clickedList[i] != pickedList[i])
                 {
                     error = true;
-                    MessageBox.Show("Game Over. New game will start.", "Game Over");
+                    MessageBox.Show("Your Score was: " + lblScore.Text + ". New game will start.", "Game Over");
                     break;
                 }
             }

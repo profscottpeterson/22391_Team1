@@ -33,14 +33,24 @@ namespace XAATArcade
         RadioButton rdBtnButtonSoundOff = new RadioButton();
         RadioButton rdBtnBackgroundSoundOn = new RadioButton();
         RadioButton rdBtnBackgroundSoundOff = new RadioButton();
+        RadioButton rdBtnTimerOn = new RadioButton();
+        public RadioButton rdBtnTimerOff = new RadioButton();
+        RadioButton rdBtnSpeed200 = new RadioButton();
+        RadioButton rdBtnSpeed300 = new RadioButton();
+        RadioButton rdBtnSpeed400 = new RadioButton();
+        RadioButton rdBtnSpeed500 = new RadioButton();
         public bool memoryPlayed = false;
         public bool sequencePlayed = false;
         public bool disposeTimer = false;
+        public int speed;
         bool buttonSoundOn = true;
         bool backgroundSoundOn = true;
         Panel pnlConfig = new Panel();
         GroupBox grpBoxButtonSound = new GroupBox();
         GroupBox grpBoxBackgroundSound = new GroupBox();
+        GroupBox grpBoxMemoryTimer = new GroupBox();
+        GroupBox grpBoxSequenceSpeed = new GroupBox();
+
         Size formSize;
         Memory memory;
         Sequence sequence;
@@ -163,7 +173,7 @@ namespace XAATArcade
             btnChangeBackgroundColor.MouseDown += (s, z) => { PlaySound(s, z); };
             pnlConfig.Controls.Add(btnChangeBackgroundColor);
 
-            grpBoxButtonSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 55);
+            grpBoxButtonSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 60);
             grpBoxButtonSound.Size = new Size(115, 70);
             grpBoxButtonSound.Text = "Button Sound";
             grpBoxButtonSound.Name = "Button Sound Group Box";
@@ -191,14 +201,14 @@ namespace XAATArcade
             rdBtnButtonSoundOff.MouseDown += (s, z) => { PlaySound(s, z); };
             grpBoxButtonSound.Controls.Add(rdBtnButtonSoundOff);
 
-            grpBoxBackgroundSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 140);
+            grpBoxBackgroundSound.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 150);
             grpBoxBackgroundSound.Size = new Size(115, 70);
             grpBoxBackgroundSound.Text = "Background Sound";
             grpBoxBackgroundSound.Name = "Background Sound Group Box";
             grpBoxBackgroundSound.BackColor = Color.AliceBlue;
             pnlConfig.Controls.Add(grpBoxBackgroundSound);
 
-            //allows sound to be turned off
+            //allows background sound to be turned on
             rdBtnBackgroundSoundOn.Location = new Point(10, 15);
             rdBtnBackgroundSoundOn.Click += (s, z) => { TurnBackgroundSoundOn(s, z); };
             rdBtnBackgroundSoundOn.Width = 40;
@@ -218,6 +228,79 @@ namespace XAATArcade
             rdBtnBackgroundSoundOff.CheckAlign = ContentAlignment.MiddleLeft;
             rdBtnBackgroundSoundOff.MouseDown += (s, z) => { PlaySound(s, z); };
             grpBoxBackgroundSound.Controls.Add(rdBtnBackgroundSoundOff);
+
+            grpBoxMemoryTimer.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 240);
+            grpBoxMemoryTimer.Size = new Size(115, 70);
+            grpBoxMemoryTimer.Visible = false;
+            grpBoxMemoryTimer.Text = "Timer";
+            grpBoxMemoryTimer.Name = "Memory Timer Group Box";
+            grpBoxMemoryTimer.BackColor = Color.Orange;
+            pnlConfig.Controls.Add(grpBoxMemoryTimer);
+
+            //turns timer on
+            rdBtnTimerOn.Location = new Point(10, 15);
+            rdBtnTimerOn.Width = 40;
+            rdBtnTimerOn.Text = "On";
+            rdBtnTimerOn.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnTimerOn.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnTimerOn.Checked = true;
+            rdBtnTimerOn.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxMemoryTimer.Controls.Add(rdBtnTimerOn);
+
+            //turns timer off
+            rdBtnTimerOff.Location = new Point(10, 40);
+            rdBtnTimerOff.Width = 40;
+            rdBtnTimerOff.Text = "Off";
+            rdBtnTimerOff.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnTimerOff.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnTimerOff.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxMemoryTimer.Controls.Add(rdBtnTimerOff);
+            
+            grpBoxSequenceSpeed.Location = new Point((((this.Width / 2) / 2) / 2) + 10, 240);
+            grpBoxSequenceSpeed.Size = new Size(115, 120);
+            grpBoxSequenceSpeed.Text = "Speed";
+            grpBoxSequenceSpeed.Visible = false;
+            grpBoxSequenceSpeed.Name = "Sequence Speed Group Box";
+            grpBoxSequenceSpeed.BackColor = Color.PaleGreen;
+            pnlConfig.Controls.Add(grpBoxSequenceSpeed);
+
+            //seqeunce speed at 200
+            rdBtnSpeed200.Location = new Point(10, 15);
+            rdBtnSpeed200.Width = 60;
+            rdBtnSpeed200.Text = "200";
+            rdBtnSpeed200.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed200.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed200.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed200);
+
+            //seqeunce speed at 300
+            rdBtnSpeed300.Location = new Point(10, 40);
+            rdBtnSpeed300.Width = 60;
+            rdBtnSpeed300.Text = "300";
+            rdBtnSpeed300.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed300.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed300.Checked = true;
+            rdBtnSpeed300.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed300);
+
+            //seqeunce speed at 500
+            rdBtnSpeed400.Location = new Point(10, 65);
+            rdBtnSpeed400.Width = 60;
+            rdBtnSpeed400.Text = "400";
+            rdBtnSpeed400.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed400.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed400.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed400);
+
+            //seqeunce speed at 500
+            rdBtnSpeed500.Location = new Point(10, 90);
+            rdBtnSpeed500.Width = 60;
+            rdBtnSpeed500.Text = "500";
+            rdBtnSpeed500.TextAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed500.CheckAlign = ContentAlignment.MiddleLeft;
+            rdBtnSpeed500.MouseDown += (s, z) => { PlaySound(s, z); };
+            grpBoxSequenceSpeed.Controls.Add(rdBtnSpeed500);
+
         }
 
         public void AddTitlePage()
@@ -319,14 +402,55 @@ namespace XAATArcade
                 }
             }
 
-            if (disposeTimer == false & memoryPlayed == true)
+            if (memoryPlayed == true)
             {
-                memory.t.Stop();
-                disposeTimer = true;
+                grpBoxMemoryTimer.Visible = true;
+
+                if (rdBtnTimerOn.Checked == true)
+                {
+                    disposeTimer = false;
+                }
+
+                if (rdBtnTimerOff.Checked == true)
+                {
+                    disposeTimer = true;
+                }
+
+                if (disposeTimer == false)
+                {
+                    memory.t.Stop();
+                    disposeTimer = true;
+                }
             }
-            
+
+            if (sequencePlayed == true)
+            {
+                grpBoxSequenceSpeed.Visible = true;
+            }
+
             pnlConfig.BringToFront();
             pnlConfig.Visible = true;
+        }
+
+        public int GetSpeed()
+        {
+            if (rdBtnSpeed200.Checked == true)
+            {
+                speed = 200;
+            }
+            if (rdBtnSpeed300.Checked == true)
+            {
+                speed = 300;
+            }
+            if (rdBtnSpeed400.Checked == true)
+            {
+                speed = 400;
+            }
+            if (rdBtnSpeed500.Checked == true)
+            {
+                speed = 500;
+            }
+            return speed;
         }
 
         public void ChangeBackColor(object sender, EventArgs e)
@@ -347,6 +471,16 @@ namespace XAATArcade
                 {
                     Controls[i].Enabled = true;
                 }
+            }
+
+            if (memoryPlayed == true)
+            {
+                grpBoxMemoryTimer.Visible = false;
+            }
+
+            if (sequencePlayed == true)
+            {
+                grpBoxSequenceSpeed.Visible = false;
             }
 
             if (disposeTimer == true && memoryPlayed == true)

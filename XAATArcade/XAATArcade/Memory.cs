@@ -341,7 +341,7 @@ namespace XAATArcade
         {
             form.Invoke(new Action(() =>
             {
-                if (form.ContainsFocus == false)
+                if (form.ContainsFocus == false || form.rdBtnTimerOff.Checked == true)
                 {
                     form.disposeTimer = true;
                 }
@@ -367,7 +367,7 @@ namespace XAATArcade
                 }
             }));
             
-            if (m == 2)
+            if (m == 40)
             {
                 t.Stop();
                 form.Invoke(new Action(() =>
