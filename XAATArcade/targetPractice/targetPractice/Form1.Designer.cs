@@ -498,7 +498,6 @@
             this.cbSpeed.Name = "cbSpeed";
             this.cbSpeed.Size = new System.Drawing.Size(131, 21);
             this.cbSpeed.TabIndex = 9;
-            this.cbSpeed.SelectedIndexChanged += new System.EventHandler(this.cbSpeed_SelectedIndexChanged);
             // 
             // cbBallColor
             // 
@@ -517,7 +516,6 @@
             this.cbBallColor.Name = "cbBallColor";
             this.cbBallColor.Size = new System.Drawing.Size(131, 21);
             this.cbBallColor.TabIndex = 8;
-            this.cbBallColor.SelectedIndexChanged += new System.EventHandler(this.cbBallColor_SelectedIndexChanged);
             // 
             // cbBallSize
             // 
@@ -534,7 +532,6 @@
             this.cbBallSize.Name = "cbBallSize";
             this.cbBallSize.Size = new System.Drawing.Size(131, 21);
             this.cbBallSize.TabIndex = 7;
-            this.cbBallSize.SelectedIndexChanged += new System.EventHandler(this.cbBallSize_SelectedIndexChanged);
             // 
             // label6
             // 

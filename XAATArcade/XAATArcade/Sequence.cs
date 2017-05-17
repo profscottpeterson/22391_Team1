@@ -32,7 +32,9 @@ namespace XAATArcade
         Color randomColor;
         bool error = false;
         private XAATArcade form;
+        //
         Font font;
+        //
         FontFamily ff;
         //form setup
         public Sequence(XAATArcade parent, Size parentSize)
