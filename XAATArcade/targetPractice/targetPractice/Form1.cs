@@ -20,30 +20,12 @@ namespace targetPractice
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-            this.loadFont();
-            //streaming the different sounds
-            hitplayer.Stream = Properties.Resources.NFF_glassy_tap_02;
-            missplayer.Stream = Properties.Resources.NFF_clog_up;
-            endplayer.Stream = Properties.Resources.bloop_x;
-            hitplayer.Load();
-            missplayer.Load();
-            hitplayer.Play();
-            missplayer.Play();
-            tBallMovement.Stop();
-            tBallSizeChanger.Stop();
-            tBallGenerator.Stop();
-            this.btnStart.Enabled = true;
-            this.btnStart.Visible = true;
-            btnStart.BackColor = Color.White;
-        }
+        
 
         class DoubleBufferedPanel : Panel { public DoubleBufferedPanel() : base() { DoubleBuffered = true; } }
-
+        //variables for number of balls hit and missed
         int num_Balls_Hit, num_Balls_Missed = 0;
-
+        // variable to hold game lives
         int gameLives = 3;
 
         // List of targets
@@ -55,81 +37,129 @@ namespace targetPractice
         // List of Flag for target growth and shrinking PArallel to ballList and ballVelocity
         List<bool> ballIsGrowing = new List<bool>();
 
+        //variable to hold form size
         Size formSize;
 
+        //initilization of random
         Random rand = new Random();
 
+        // lists for ball size and an image list to hold different target colors and their resourse location
         List<Image> BallColors = new List<Image> {targetPractice.Properties.Resources.blue, targetPractice.Properties.Resources.red, targetPractice.Properties.Resources.green, targetPractice.Properties.Resources.yellow, targetPractice.Properties.Resources.orange, targetPractice.Properties.Resources.purple, targetPractice.Properties.Resources.pokeball};
         List<int> BallSize = new List<int> { 80,70,60,50,40 };
 
+        // DLL GDI32 in order to load fonts into memeory
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbfont, uint cbfont, IntPtr pdv, [In] ref uint pcFonts);
+        //font variables
         FontFamily ff;
         Font font;
-
+        // sound players for hit sound miss sound and end of ball life sound
         System.Media.SoundPlayer hitplayer = new System.Media.SoundPlayer();
         System.Media.SoundPlayer missplayer = new System.Media.SoundPlayer();
         System.Media.SoundPlayer endplayer = new System.Media.SoundPlayer();
 
-
+        // various things set when form is created
+        public Form1()
+        {
+            InitializeComponent();
+            this.loadFont();
+            //streaming the different sounds
+            hitplayer.Stream = Properties.Resources.NFF_glassy_tap_02;
+            missplayer.Stream = Properties.Resources.NFF_clog_up;
+            endplayer.Stream = Properties.Resources.bloop_x;
+            //loading different sounds
+            hitplayer.Load();
+            missplayer.Load();
+            // Playing each sound once to avoid skipping
+            hitplayer.Play();
+            missplayer.Play();
+            endplayer.Play();
+            // disable timers at start
+            tBallMovement.Stop();
+            tBallSizeChanger.Stop();
+            tBallGenerator.Stop();
+            // enable start button at form load
+            this.btnStart.Enabled = true;
+            this.btnStart.Visible = true;
+            // set btnStart back color
+            btnStart.BackColor = Color.White;
+        }
+        // Timer tBallGenerator tick event method
         private void tBallGenerator_Tick(object sender, EventArgs e)
         {
+            //method to make targets 
             MakeBall(cbSpeed.SelectedIndex);
         }
-
+        // form load event (things done when the form loads)
         private void Form1_Load(object sender, EventArgs e)
         {
             // Save the form's size.
             formSize = ClientSize;
-
+            // set form to double buffer to avoid flickering
             SetFormToDoubleBuffer();
-
+            // set mouse event of mouse left and right down to Ball_Click Method
             this.MouseDown += new MouseEventHandler(Ball_Click);
         }
-
+        // timer tBallMovement tick event
         private void tBallMovement_Tick(object sender, EventArgs e)
         {
+            // if disable movement is checked avoid using MoveBall() method
             if (cbDisableMovement.Checked == true)
             {
             }
+            // if disable movement is not checked use MoveBall()
             else
             {
                 MoveBall();
             }
 
+            // refresh form to activate paint event and redraw the form
             this.Refresh();
 
+            // set formSize to ClientSize for various math
             formSize = ClientSize;
 
+            // set lblScoreHit to the num_Balls_Hit counter
             lblScoreHit.Text = num_Balls_Hit.ToString();
 
+            // check for end of game with 0 lives or if ballList has a count = or greater than 10
             if (gameLives == 0 || ballList.Count >= 10)
             {
+                // stop timer method stops timers
                 StopTimers();
+                // show game over screen
                 ShowGameOver();
             }
             
         }
-
+        // form1 paint event uses TargetDrawer method
         public void Form1_Paint(object sender, PaintEventArgs e)
         {
+            // targetDrawer method to paint targets to be shown when screen refreshes
             TargetDrawer(e);
         }
 
+        // tGameTime tick event that resizes targets when needed
         private void tGameTime_Tick(object sender, EventArgs e)
         {
+            // targetResizer method used to change size of targets
             TargetResizer();
         }
 
+        // Options menu button click event
         private void btnOptionsMenu_Click(object sender, EventArgs e)
         {
+            // check if options menu is already open
             if (pnlOptoinsMenu.Enabled == true)
             {
                 HideOptions();
                 ShowStartBtn();
-                this.Refresh();
+                // reset game
                 ResetGame();
+                // refresh form1 to show no targets in backgorund
+                this.Refresh();
             }
+            // else if options menu is not open
             else if (pnlOptoinsMenu.Enabled == false)
             {
                 ShowOptions();
@@ -139,7 +169,7 @@ namespace targetPractice
             }
 
         }
-
+        // click event for exit button on options menu
         private void btnOptionsExit_Click(object sender, EventArgs e)
         {
             HideOptions();
@@ -147,23 +177,10 @@ namespace targetPractice
             this.Refresh();
         }
 
-        private void cbBallColor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbBallSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void cbSpeed_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+        // comboBox CursorType selected index changed (option selected other than default)
         private void cbCursorType_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (cbCursorType.SelectedIndex == -1)
             {
                 this.Cursor = Cursors.Default;
@@ -176,16 +193,13 @@ namespace targetPractice
             {
                 this.Cursor = Cursors.Default;
             }
-        }
+        } 
 
-        private void cbBallMovement_SelectedIndexChanged(object sender, EventArgs e)
-        {
-  
-        }
-
+        // if spawnspeed is changed
         private void cbSpawnSpeed_SelectedIndexChanged(object sender, EventArgs e)
         {
- 
+            // if statement to find selected index that was chosen and set 
+            // tballGenerator interval (ms)
             if (cbSpawnSpeed.SelectedIndex == 0)
             {
                 tBallGenerator.Interval = 700;
@@ -208,28 +222,33 @@ namespace targetPractice
             }
         }
 
+        // click event for btnStart
         private void btnStart_Click(object sender, EventArgs e)
         {
-
+            // various methods to get game started
             RestockLives();
             StartTimers();
             HideStartBtn();
             this.Refresh();
         }
 
+        // form closing event that stops timers and does any events that havnt been done yet
         private void Form1_Closing(object sender, FormClosingEventArgs e)
         {
             StopTimers();
             Application.DoEvents();
         }
 
+        // click method for form1 to check if a target is ever hit
         private void Ball_Click(object sender, MouseEventArgs e)
         {
             CheckForHit(e);
         }
 
+        // method for when disable movement is clicked
         private void DisableMovement_CheckedChanged(object sender, EventArgs e)
         {
+            // if disable movement is clicked auto turn off default of targets growing and shrinking
             cbBallSize.SelectedIndex = 0;
 
         }
@@ -237,6 +256,7 @@ namespace targetPractice
         /// <summary>
         /// Game Methods
         /// </summary>
+        /// method ResetGame Resets game to get ready for a new one
         private void ResetGame()
         {
             ballList.Clear();
@@ -247,7 +267,8 @@ namespace targetPractice
             num_Balls_Missed = 0;
             HideGameOver();
         }
-
+        // check for hit checks mouse location walks through targets and checks if any of the targets
+        // or graphics contain the supplied mouse location
         private void CheckForHit(MouseEventArgs e)
         {
             bool ballhit = false;
@@ -279,33 +300,33 @@ namespace targetPractice
                 RemoveLife();
             }
         }
-
+        // method StopTimers stops all timers
         private void StopTimers()
         {
             tBallMovement.Stop();
             tBallSizeChanger.Stop();
             tBallGenerator.Stop();
         }
-
+        // method StartTimers enables and starts all timers
         private void StartTimers()
         {
             tBallMovement.Start();
             tBallGenerator.Start();
             tBallSizeChanger.Start();
         }
-
+        // method showStartBtn makes the start button visable and enabled
         private void ShowStartBtn()
         {
             btnStart.Visible = true;
             btnStart.Enabled = true;
         }
-
+        // method HideStartBtn makes the start button hidden and disabled
         private void HideStartBtn()
         {
             btnStart.Visible = false;
             btnStart.Enabled = false;
         }
-
+        // method to load custom font into memeory
         private void loadFont()
         {
             byte[] fontArray = targetPractice.Properties.Resources._8_BITWONDER;
@@ -342,19 +363,24 @@ namespace targetPractice
             lblGOScoreDisplay.Font = new Font(ff, 20, FontStyle.Regular);
             cbDisableMovement.Font = new Font(ff, 16, FontStyle.Regular);
         }
-
+        // method showOptions makes the options menu visable and enabled
         private void ShowOptions()
         {
             pnlOptoinsMenu.Enabled = true;
             pnlOptoinsMenu.Visible = true;
         }
-
+        // method HideOptions makes the options menu hidden and disabled
         private void HideOptions()
         {
             pnlOptoinsMenu.Visible = false;
             pnlOptoinsMenu.Enabled = false;
         }
-
+        // ShowGameOver enables the game over panel and makes it visable
+        // show game over then populates text on game over screen with
+        // any options that were selected (if any) otherwise shows Default
+        // show game over also sets balls_hit back to 0
+        // doubleBufferedPanel1 is the blue bar at the bottom to help make it look better
+        // with from resizing
         private void ShowGameOver()
         {
             pnlGameOver.Enabled = true;
@@ -394,7 +420,8 @@ namespace targetPractice
             pnlHUD.Visible = false;
             doubleBufferedPanel1.Visible = false;
         }
-
+        // method HideGameOver makes the gameOver panel disabled and hidden
+        // also makes HUD panel visable as well as doubleBufferedPanel1 blue bar
         private void HideGameOver()
         {
             pnlGameOver.Enabled = false;
@@ -402,7 +429,7 @@ namespace targetPractice
             pnlHUD.Visible = true;
             doubleBufferedPanel1.Visible = true;
         }
-
+        // method to make the target references 
         private void MakeBall(int Speed) {
             //size of target variable
             int width;
@@ -492,12 +519,14 @@ namespace targetPractice
             ballVelocity.Add(new Point(vx, vy));
         }
 
+        // btnGameOver Reset click event
         private void btnGOReset_Click(object sender, EventArgs e)
         {
             ResetGame();
             this.Refresh();
         }
 
+        // method to move targets/balls
         private void MoveBall()
         {
             for (int ball_num = 0; ball_num < ballList.Count; ball_num++)
@@ -533,6 +562,7 @@ namespace targetPractice
             }
         }
 
+        //method to remove lives if needed
         private void RemoveLife()
         {
             if (gameLives > 0)
@@ -543,6 +573,7 @@ namespace targetPractice
             }
         }
 
+        // method to restock lives at the end of the game
         private void RestockLives()
         {
             gameLives = 3;
@@ -553,6 +584,7 @@ namespace targetPractice
             }
         }
 
+        // method to resize targets to give feeling of shrinking and growing
         private void TargetResizer()
         {
             if (cbBallSize.SelectedIndex == -1)
@@ -595,6 +627,7 @@ namespace targetPractice
             }
         }
 
+        // targetDrawer paint event method walks through ballList and draws each target at their specified location
         private void TargetDrawer(PaintEventArgs e)
         {
             Graphics c = e.Graphics;
@@ -612,15 +645,12 @@ namespace targetPractice
             }
         }
 
+        // method to set form to double buffer
+        // used to stop flickering when moving graphics
         private void SetFormToDoubleBuffer()
         {
             // Use double buffering to reduce flicker.
-            this.SetStyle(
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint |
-                ControlStyles.DoubleBuffer,
-                true);
-
+            this.SetStyle( ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
             this.UpdateStyles();
         }
     }
